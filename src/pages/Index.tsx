@@ -1,13 +1,84 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useQuizState } from '@/hooks/useQuizState';
+import { Landing } from './Landing';
+import { Quiz } from './Quiz';
+import { LeadCapture } from './LeadCapture';
+import { Results } from './Results';
+import { sendLeadWebhook } from '@/utils/sendWebhook';
 
 const Index = () => {
+  const {
+    state,
+    hasSavedProgress,
+    startQuiz,
+    loadProgress,
+    answerQuestion,
+    goToPreviousQuestion,
+    continueFromTransition,
+    submitLead,
+    skipLead,
+    restartQuiz,
+    getCurrentSection,
+    getScores,
+  } = useQuizState();
+
+  const handleSubmitLead = (data: { name: string; email: string }) => {
+    const scores = getScores();
+    sendLeadWebhook(data, scores, state.answers);
+    submitLead(data);
+  };
+
+  const renderScreen = () => {
+    switch (state.currentScreen) {
+      case 'landing':
+        return (
+          <Landing
+            onStart={startQuiz}
+            onResume={hasSavedProgress ? loadProgress : undefined}
+            hasSavedProgress={hasSavedProgress}
+          />
+        );
+
+      case 'quiz':
+      case 'transition':
+        return (
+          <Quiz
+            currentQuestion={state.currentQuestion}
+            currentSection={getCurrentSection()}
+            answers={state.answers}
+            showTransition={state.currentScreen === 'transition'}
+            onAnswer={answerQuestion}
+            onBack={goToPreviousQuestion}
+            onContinueFromTransition={continueFromTransition}
+          />
+        );
+
+      case 'leadCapture':
+        return (
+          <LeadCapture
+            onSubmit={handleSubmitLead}
+            onSkip={skipLead}
+          />
+        );
+
+      case 'results':
+        return (
+          <Results
+            scores={getScores()}
+            answers={state.answers}
+            leadData={state.leadData}
+            onRestart={restartQuiz}
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen bg-background">
+      {renderScreen()}
+    </main>
   );
 };
 
