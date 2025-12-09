@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, BarChart3, Rocket, Lock, Zap, Clock } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface LandingProps {
   onStart: () => void;
@@ -9,18 +11,33 @@ interface LandingProps {
 
 export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Fade in on mount as ONE unit
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12">
       {/* Background effects */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-radial" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
-      
+
       {/* Floating glow orbs */}
       <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl" style={{ animationDelay: '1.5s' }} />
 
-      <div className="animate-fade-in relative z-10 max-w-4xl w-full text-center">
+      <div
+        className={cn(
+          "relative z-10 max-w-4xl w-full text-center transition-opacity duration-400 ease-out",
+          isVisible ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{ willChange: 'opacity' }}
+      >
         {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm text-primary">
           <span className="animate-pulse h-2 w-2 rounded-full bg-primary" />
@@ -43,7 +60,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           <div className="mb-8">
             <button
               onClick={onResume}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-success/10 border border-success/20 text-success hover:bg-success/20 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-success/10 border border-success/20 text-success hover:bg-success/20 transition-colors duration-350"
             >
               <Clock className="h-4 w-4" />
               Continue where you left off
@@ -59,9 +76,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         {/* Two-path cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {/* Card 1: Quick Assessment */}
-          <div 
+          <div
             onClick={onStart}
-            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-primary hover:scale-[1.02] transition-all duration-300 group"
+            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-primary hover:scale-[1.02] transition-all duration-350 group"
           >
             <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-primary/20 p-3">
               <BarChart3 className="h-7 w-7 text-primary" />
@@ -101,9 +118,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
 
           {/* Card 2: Implementation Guide */}
-          <div 
+          <div
             onClick={() => navigate('/implementation-guide')}
-            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-accent hover:scale-[1.02] transition-all duration-300 group"
+            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-accent hover:scale-[1.02] transition-all duration-350 group"
           >
             <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-accent/20 p-3">
               <Rocket className="h-7 w-7 text-accent" />
@@ -131,7 +148,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </div>
             </div>
 
-            <button className="w-full relative overflow-hidden bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:shadow-lg"
+            <button className="w-full relative overflow-hidden bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-350 hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:shadow-lg"
               style={{ boxShadow: '0 0 20px hsl(263, 70%, 58%, 0.2)' }}
             >
               Get Your Guide

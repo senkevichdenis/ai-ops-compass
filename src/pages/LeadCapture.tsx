@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Target } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Target, Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface LeadCaptureProps {
   onSubmit: (data: { name: string; email: string }) => void;
@@ -9,15 +10,43 @@ interface LeadCaptureProps {
 export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [isReady, setIsReady] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Wait for mount, then fade in as ONE unit
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+      requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({ name, email });
   };
 
+  // Loading state
+  if (!isReady) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-12 bg-gradient-radial">
-      <div className="animate-fade-in glass-card w-full max-w-md p-8 text-center">
+      <div
+        className={cn(
+          "glass-card w-full max-w-md p-8 text-center transition-opacity duration-400 ease-out",
+          isVisible ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{ willChange: 'opacity' }}
+      >
         {/* Icon */}
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
           <Target className="h-8 w-8 text-primary" />
@@ -63,7 +92,7 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
         {/* Skip link */}
         <button
           onClick={onSkip}
-          className="mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+          className="mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors duration-350 underline underline-offset-4"
         >
           Skip for now
         </button>

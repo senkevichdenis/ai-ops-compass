@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Question, answerOptions, sectionInfo } from '@/data/questions';
 import { AnswerCard } from './AnswerCard';
@@ -21,9 +22,33 @@ export function QuestionCard({
   canGoBack,
 }: QuestionCardProps) {
   const section = sectionInfo[question.section];
+  const [isVisible, setIsVisible] = useState(false);
+  const prevQuestionRef = useRef(questionNumber);
+
+  // Fade in when question changes or on initial mount
+  useEffect(() => {
+    // Reset visibility when question changes
+    if (prevQuestionRef.current !== questionNumber) {
+      setIsVisible(false);
+      prevQuestionRef.current = questionNumber;
+    }
+
+    // Small delay then fade in as one unit
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [questionNumber]);
 
   return (
-    <div className="animate-fade-in w-full max-w-2xl mx-auto px-4">
+    <div
+      className={cn(
+        "w-full max-w-2xl mx-auto px-4 transition-opacity duration-350 ease-out",
+        isVisible ? 'opacity-100' : 'opacity-0'
+      )}
+      style={{ willChange: 'opacity, transform' }}
+    >
       {/* Question header */}
       <div className="mb-8 flex items-center justify-center gap-3">
         <span className="text-3xl font-bold text-muted-foreground/50">
@@ -69,7 +94,7 @@ export function QuestionCard({
       {canGoBack && (
         <button
           onClick={onBack}
-          className="mt-8 flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+          className="mt-8 flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-350"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Previous</span>
