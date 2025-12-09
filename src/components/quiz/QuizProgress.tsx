@@ -29,7 +29,11 @@ export function QuizProgress({ currentQuestion, currentSection }: QuizProgressPr
                 "section-dot",
                 currentSection === section && "active"
               )}
-              style={{ backgroundColor: '#20d3ee' }}
+              style={{
+                backgroundColor: currentSection === section
+                  ? 'rgba(255, 255, 255, 0.9)'
+                  : 'rgba(255, 255, 255, 0.3)'
+              }}
             />
             <span
               className={cn(
@@ -49,7 +53,7 @@ export function QuizProgress({ currentQuestion, currentSection }: QuizProgressPr
           className="progress-bar-fill absolute left-0 top-0 h-full rounded-full"
           style={{
             width: `${progress}%`,
-            background: 'linear-gradient(90deg, #e0f7ff 0%, #20d3ee 100%)'
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.5) 40%, #20d3ee 100%)'
           }}
         />
       </div>

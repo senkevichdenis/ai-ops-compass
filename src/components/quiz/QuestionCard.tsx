@@ -57,8 +57,8 @@ export function QuestionCard({
         <span
           className="rounded-full px-3 py-1 text-sm font-normal"
           style={{
-            backgroundColor: 'rgba(32, 211, 238, 0.2)',
-            color: '#20d3ee',
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            color: 'rgba(255, 255, 255, 0.7)',
             letterSpacing: '0.01em'
           }}
         >

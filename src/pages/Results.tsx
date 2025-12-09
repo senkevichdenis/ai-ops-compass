@@ -6,7 +6,7 @@ import { ModernRecommendations } from '@/components/results/ModernRecommendation
 import { EmailCaptureCard } from '@/components/results/EmailCaptureCard';
 import { ConsultationModal } from '@/components/results/ConsultationModal';
 import { SharedResultsBanner } from '@/components/results/SharedResultsBanner';
-import { RefreshCw, Share2, Sparkles, Check, Loader2 } from 'lucide-react';
+import { RefreshCw, Share2, Sparkles, Check } from 'lucide-react';
 import { sendConsultationWebhook, sendLeadWebhook } from '@/utils/sendWebhook';
 import { toast } from 'sonner';
 
@@ -28,19 +28,14 @@ interface ResultsProps {
 export function Results({ scores, answers, leadData, onRestart, isSharedView = false }: ResultsProps) {
   const [showModal, setShowModal] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
-  // Simulate loading to prevent flicker - ensure everything is ready
+  // Fade in on mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Small delay before fade in for smooth transition
-      requestAnimationFrame(() => {
-        setIsVisible(true);
-      });
-    }, 300);
+      setIsVisible(true);
+    }, 50);
     return () => clearTimeout(timer);
   }, []);
 
@@ -91,18 +86,6 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
 
   const showEmailCapture = !leadData && !isSharedView;
 
-  // Loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin" style={{ color: '#20d3ee' }} />
-          <p className="text-muted-foreground">Preparing your results...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div 
       className={`relative min-h-screen bg-gradient-radial px-4 py-12 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
@@ -148,7 +131,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
         {!isSharedView ? (
           <div className="cta-card text-center mb-8">
             <div className="badge mb-4">
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-4 w-4" style={{ color: 'rgba(255, 255, 255, 0.5)' }} />
               <span>Next Step</span>
             </div>
             <h5 className="font-heading mb-2 text-foreground">
@@ -164,7 +147,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
         ) : (
           <div className="cta-card text-center mb-8">
             <div className="badge mb-4">
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-4 w-4" style={{ color: 'rgba(255, 255, 255, 0.5)' }} />
               <span>Get Started</span>
             </div>
             <h5 className="font-heading mb-2 text-foreground">

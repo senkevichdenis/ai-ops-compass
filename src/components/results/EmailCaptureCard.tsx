@@ -32,8 +32,8 @@ export function EmailCaptureCard({ onSubmit }: EmailCaptureCardProps) {
   return (
     <div className="glass-card p-6">
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center rounded-full bg-primary/20 p-2">
-          <Mail className="h-5 w-5 text-primary" />
+        <div className="flex items-center justify-center rounded-full p-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          <Mail className="h-5 w-5" style={{ color: 'rgba(255, 255, 255, 0.7)' }} />
         </div>
         <h6 className="font-heading text-foreground">
           Get Your Full Results by Email
@@ -62,7 +62,7 @@ export function EmailCaptureCard({ onSubmit }: EmailCaptureCardProps) {
           placeholder="Email Address"
         />
         <button type="submit" className="btn-primary w-full">
-          Send to My Email →
+          Send to My Email
         </button>
       </form>
     </div>
