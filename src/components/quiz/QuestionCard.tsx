@@ -55,12 +55,12 @@ export function QuestionCard({
           Q{questionNumber}
         </span>
         <span
-          className={cn(
-            "rounded-full px-3 py-1 text-sm font-medium",
-            question.section === 'sales' && "bg-sales/20 text-sales",
-            question.section === 'marketing' && "bg-marketing/20 text-marketing",
-            question.section === 'ops' && "bg-ops/20 text-ops"
-          )}
+          className="rounded-full px-3 py-1 text-sm font-normal"
+          style={{
+            backgroundColor: 'rgba(32, 211, 238, 0.2)',
+            color: '#20d3ee',
+            letterSpacing: '0.01em'
+          }}
         >
           {section.shortName}
         </span>

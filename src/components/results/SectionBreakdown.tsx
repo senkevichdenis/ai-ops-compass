@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
 
 interface Scores {
   sales: number;
@@ -20,9 +19,9 @@ export function SectionBreakdown({ scores }: SectionBreakdownProps) {
   }, []);
 
   const sections = [
-    { key: 'sales', label: 'Sales', color: 'bg-sales', score: scores.sales },
-    { key: 'marketing', label: 'Marketing', color: 'bg-marketing', score: scores.marketing },
-    { key: 'ops', label: 'Ops', color: 'bg-ops', score: scores.ops },
+    { key: 'sales', label: 'Sales', score: scores.sales },
+    { key: 'marketing', label: 'Marketing', score: scores.marketing },
+    { key: 'ops', label: 'Ops', score: scores.ops },
   ];
 
   return (
@@ -37,13 +36,11 @@ export function SectionBreakdown({ scores }: SectionBreakdownProps) {
           </div>
           <div className="h-3 w-full overflow-hidden rounded-full bg-muted/50">
             <div
-              className={cn(
-                "h-full rounded-full transition-all duration-1000 ease-out",
-                section.color
-              )}
+              className="h-full rounded-full transition-all duration-1000 ease-out"
               style={{
                 width: animate ? `${(section.score / 10) * 100}%` : '0%',
                 transitionDelay: `${index * 150}ms`,
+                background: 'linear-gradient(90deg, #e0f7ff 0%, #20d3ee 100%)'
               }}
             />
           </div>

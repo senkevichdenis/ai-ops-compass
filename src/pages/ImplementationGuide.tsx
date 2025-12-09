@@ -148,7 +148,7 @@ export function ImplementationGuide() {
   if (!isReady) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="h-8 w-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+        <div className="h-8 w-8 border-2 rounded-full animate-spin" style={{ borderColor: 'rgba(32, 211, 238, 0.3)', borderTopColor: '#20d3ee' }} />
       </div>
     );
   }
@@ -171,7 +171,7 @@ export function ImplementationGuide() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="badge mb-4">
-              <Rocket className="h-4 w-4 text-secondary" />
+              <Rocket className="h-4 w-4" style={{ color: '#20d3ee' }} />
               <span>Implementation Guide</span>
             </div>
             <h4 className="font-heading mb-3 text-foreground">

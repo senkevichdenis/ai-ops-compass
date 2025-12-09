@@ -6,17 +6,17 @@ interface SharedResultsBannerProps {
 
 export function SharedResultsBanner({ onTakeAssessment }: SharedResultsBannerProps) {
   return (
-    <div className="mb-6 rounded-xl bg-primary/10 border border-primary/20 p-4">
+    <div className="mb-6 rounded-xl p-4" style={{ backgroundColor: 'rgba(32, 211, 238, 0.1)', border: '1px solid rgba(32, 211, 238, 0.2)' }}>
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-full bg-primary/20">
-            <Eye className="h-5 w-5 text-primary" />
+          <div className="p-2 rounded-full" style={{ backgroundColor: 'rgba(32, 211, 238, 0.2)' }}>
+            <Eye className="h-5 w-5" style={{ color: '#20d3ee' }} />
           </div>
           <span className="text-foreground font-normal" style={{ letterSpacing: '0.01em' }}>Viewing shared results</span>
         </div>
         <button
           onClick={onTakeAssessment}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-normal hover:bg-primary/90 transition-all duration-300" style={{ letterSpacing: '0.01em' }}
+          className="btn-primary flex items-center gap-2"
         >
           Take your own assessment
           <ArrowRight className="h-4 w-4" />
