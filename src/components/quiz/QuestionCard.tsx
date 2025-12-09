@@ -90,16 +90,18 @@ export function QuestionCard({
         ))}
       </div>
 
-      {/* Back button */}
-      {canGoBack && (
-        <button
-          onClick={onBack}
-          className="mt-8 flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-350"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Previous</span>
-        </button>
-      )}
+      {/* Back button - always render to prevent layout shift */}
+      <div className="mt-8 h-6">
+        {canGoBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors duration-350"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Previous</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 }

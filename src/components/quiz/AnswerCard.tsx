@@ -24,7 +24,7 @@ export function AnswerCard({ score, label, subtitle, isSelected, onClick }: Answ
     const className = "w-6 h-6 mb-3";
     switch (score) {
       case 0:
-        return <Circle className={cn(className, isSelected ? "text-muted-foreground" : "text-muted-foreground/50")} />;
+        return <Circle className={cn(className, isSelected ? "text-red-400" : "text-muted-foreground/50")} />;
       case 1:
         return <CircleDot className={cn(className, isSelected ? "text-warning" : "text-muted-foreground/50")} />;
       case 2:

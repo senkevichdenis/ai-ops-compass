@@ -46,8 +46,9 @@
     
     --warning: 45 93% 47%;
     --warning-foreground: 0 0% 10%;
-    
+
     --neutral-dim: 220 9% 46%;
+    --not-yet: 0 70% 55%;
 
     /* Section colors */
     --sales: 217 91% 60%;
@@ -178,8 +179,8 @@
   }
 
   .answer-card.selected-gray {
-    border-color: hsl(var(--neutral-dim));
-    background: hsl(var(--neutral-dim) / 0.1);
+    border-color: hsl(var(--not-yet));
+    background: hsl(var(--not-yet) / 0.1);
   }
 
   .answer-card.selected-yellow {
