@@ -106,9 +106,9 @@ export function ImplementationGuide() {
             <CheckCircle2 className="h-12 w-12 text-success" />
           </div>
           
-          <h1 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+          <h4 className="font-heading mb-4 text-foreground">
             Request Received!
-          </h1>
+          </h4>
           
           <p className="mb-6 text-muted-foreground">
             We're analyzing your business process and creating your custom implementation guide.
@@ -170,12 +170,13 @@ export function ImplementationGuide() {
         >
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="mb-4 inline-flex items-center justify-center rounded-full bg-accent/20 p-3">
-              <Rocket className="h-8 w-8 text-accent" />
+            <div className="badge mb-4">
+              <Rocket className="h-4 w-4 text-secondary" />
+              <span>Implementation Guide</span>
             </div>
-            <h1 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
+            <h4 className="font-heading mb-3 text-foreground">
               Get Your AI Implementation Guide
-            </h1>
+            </h4>
             <p className="text-muted-foreground">
               Describe your business challenge and we'll create a custom automation roadmap just for you.
             </p>

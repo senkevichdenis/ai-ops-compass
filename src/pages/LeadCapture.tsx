@@ -53,9 +53,9 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
         </div>
 
         {/* Headline */}
-        <h1 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
+        <h4 className="font-heading mb-2 text-foreground">
           Your Results Are Ready!
-        </h1>
+        </h4>
 
         {/* Subtext */}
         <p className="mb-8 text-muted-foreground">
