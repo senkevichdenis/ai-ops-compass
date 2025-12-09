@@ -36,7 +36,7 @@
 
     /* === MUTED === */
     --muted: 228 30% 15%;
-    --muted-foreground: 0 0% 100% / 0.6;   /* #ffffff99 */
+    --muted-foreground: 0 0% 100% / 0.7;   /* Slightly whiter */
 
     /* === DESTRUCTIVE === */
     --destructive: 0 84% 60%;
@@ -402,7 +402,7 @@
 
   /* === CYAN GRADIENT TEXT (ElevenLabs style) === */
   .text-gradient-cyan {
-    background: linear-gradient(180deg, #a5f3fc 0%, #22d3ee 50%, #06b6d4 100%);
+    background: linear-gradient(180deg, #e0f7ff 0%, #67e8f9 50%, #22d3ee 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -419,8 +419,8 @@
     font-weight: 500;
     line-height: 1.2;
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
   }
   /* No hover on pills */
 }
