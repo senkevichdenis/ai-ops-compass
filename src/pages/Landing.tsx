@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, BarChart3, Lock, Zap, Clock, Sparkles, FileText, TrendingUp } from 'lucide-react';
+import { Check, BarChart3, Lock, Zap, Clock, Sparkles, FileText, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LandingProps {
@@ -36,7 +36,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
       >
         {/* Badge - top */}
         <div className="badge mb-6">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
           <span>AI Ops Compass</span>
         </div>
 
@@ -109,9 +109,8 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
             {/* Button */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center gap-2">
+              <button className="btn-primary w-full flex items-center justify-center">
                 Start Assessment
-                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
@@ -154,9 +153,8 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
             {/* Button */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center gap-2">
+              <button className="btn-primary w-full flex items-center justify-center">
                 Get Your Guide
-                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
@@ -164,15 +162,15 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
         {/* Trust badges - tiny, subtle */}
         <div className="flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
             <Lock className="h-2.5 w-2.5" />
             No signup
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
             <Check className="h-2.5 w-2.5" />
             Free
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
             <Zap className="h-2.5 w-2.5" />
             Instant
           </span>
