@@ -9,7 +9,7 @@
 @layer base {
   :root {
     /* === BACKGROUNDS === */
-    --background: 225 53% 7%;              /* #090d1b */
+    --background: 240 10% 4%;              /* #0a0a0e - almost black, neutral */
     --background-alt: 228 43% 12%;         /* #12172e */
     --foreground: 0 0% 100%;               /* #ffffff */
 
@@ -198,17 +198,12 @@
 @layer components {
   /* === CARDS === */
   .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
-    padding: 40px;
-    transition: all 250ms ease;
+    padding: 32px;
   }
-
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
+  /* NO hover state - cards stay static */
 
   /* === CTA CARD with glow (for consultation) === */
   .cta-card {
@@ -231,36 +226,34 @@
     @apply font-semibold;
     background: rgba(0, 0, 0, 0.8);
     color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    padding: 14px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 12px 24px;
     border-radius: 1000px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    transition: all 250ms ease;
+    transition: all 200ms ease;
   }
 
   .btn-primary:hover {
-    background: rgba(0, 0, 0, 1);
-    border-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
   }
 
   .btn-secondary {
     @apply font-semibold;
     background: rgba(0, 0, 0, 0.8);
     color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    padding: 14px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 12px 24px;
     border-radius: 1000px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    transition: all 250ms ease;
+    transition: all 200ms ease;
   }
 
   .btn-secondary:hover {
-    background: rgba(0, 0, 0, 1);
-    border-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
   }
 
   .btn-ghost {
@@ -409,7 +402,7 @@
 
   /* === CYAN GRADIENT TEXT (ElevenLabs style) === */
   .text-gradient-cyan {
-    background: linear-gradient(180deg, #b8f0ff 0%, #00d4ff 100%);
+    background: linear-gradient(180deg, #a5f3fc 0%, #22d3ee 50%, #06b6d4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -419,20 +412,17 @@
   .feature-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
+    gap: 5px;
+    padding: 5px 10px;
     border-radius: 1000px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.8);
-    transition: all 250ms ease;
+    line-height: 1.2;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
   }
-
-  .feature-pill:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-  }
+  /* No hover on pills */
 }
 
 @layer utilities {

@@ -64,24 +64,24 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
         )}
 
-        {/* Choose Your Path heading */}
-        <h6 className="font-heading mb-6 text-foreground">
+        {/* Choose Your Path - small label */}
+        <p className="text-sm font-medium text-muted-foreground mb-6 tracking-wide">
           Choose Your Path
-        </h6>
+        </p>
 
         {/* Two-path cards - SEPARATE with gap */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
           {/* Card 1: Quick Assessment */}
           <div
             onClick={onStart}
-            className="glass-card text-left cursor-pointer flex flex-col h-full group"
+            className="glass-card text-left cursor-pointer flex flex-col h-full"
           >
             <div className="flex-1">
               {/* Small label */}
-              <p className="text-sm text-muted-foreground mb-3">Assessment</p>
+              <p className="text-xs text-muted-foreground mb-2">Assessment</p>
 
               {/* Title */}
-              <h3 className="font-heading text-2xl text-foreground mb-3">
+              <h3 className="font-heading text-xl text-foreground mb-3">
                 Quick Assessment
               </h3>
 
@@ -91,17 +91,17 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </p>
 
               {/* Feature pills */}
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-6">
                 <span className="feature-pill">
-                  <BarChart3 className="h-3.5 w-3.5" />
+                  <BarChart3 className="h-3 w-3" />
                   15 Questions
                 </span>
                 <span className="feature-pill">
-                  <Zap className="h-3.5 w-3.5" />
+                  <Zap className="h-3 w-3" />
                   Instant
                 </span>
                 <span className="feature-pill">
-                  <Check className="h-3.5 w-3.5" />
+                  <Check className="h-3 w-3" />
                   Free
                 </span>
               </div>
@@ -119,14 +119,14 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           {/* Card 2: Implementation Guide */}
           <div
             onClick={() => navigate('/implementation-guide')}
-            className="glass-card text-left cursor-pointer flex flex-col h-full group"
+            className="glass-card text-left cursor-pointer flex flex-col h-full"
           >
             <div className="flex-1">
               {/* Small label */}
-              <p className="text-sm text-muted-foreground mb-3">Roadmap</p>
+              <p className="text-xs text-muted-foreground mb-2">Roadmap</p>
 
               {/* Title */}
-              <h3 className="font-heading text-2xl text-foreground mb-3">
+              <h3 className="font-heading text-xl text-foreground mb-3">
                 Implementation Guide
               </h3>
 
@@ -136,17 +136,17 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </p>
 
               {/* Feature pills */}
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-6">
                 <span className="feature-pill">
-                  <Sparkles className="h-3.5 w-3.5" />
+                  <Sparkles className="h-3 w-3" />
                   AI Analysis
                 </span>
                 <span className="feature-pill">
-                  <FileText className="h-3.5 w-3.5" />
+                  <FileText className="h-3 w-3" />
                   Roadmap
                 </span>
                 <span className="feature-pill">
-                  <TrendingUp className="h-3.5 w-3.5" />
+                  <TrendingUp className="h-3 w-3" />
                   ROI
                 </span>
               </div>
@@ -162,18 +162,18 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
         </div>
 
-        {/* Trust badges - feature-pill style */}
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <span className="feature-pill text-xs">
-            <Lock className="h-3 w-3" />
+        {/* Trust badges - tiny, subtle */}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+            <Lock className="h-2.5 w-2.5" />
             No signup
           </span>
-          <span className="feature-pill text-xs">
-            <Check className="h-3 w-3" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+            <Check className="h-2.5 w-2.5" />
             Free
           </span>
-          <span className="feature-pill text-xs">
-            <Zap className="h-3 w-3" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.08] bg-black/30 text-[11px] text-white/60">
+            <Zap className="h-2.5 w-2.5" />
             Instant
           </span>
         </div>
