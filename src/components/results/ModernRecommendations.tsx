@@ -62,7 +62,7 @@ function SectionCard({
         </div>
         <div className="badge-success flex items-center gap-2 px-4 py-2 rounded-full border border-success/20">
           <Check className="h-4 w-4" strokeWidth={2.5} />
-          <span className="font-medium">All areas automated!</span>
+          <span className="font-normal" style={{ letterSpacing: '0.01em' }}>All areas automated!</span>
         </div>
       </div>
     );

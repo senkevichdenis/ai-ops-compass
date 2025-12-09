@@ -22,7 +22,7 @@ export function EmailCaptureCard({ onSubmit }: EmailCaptureCardProps) {
         <div className="inline-flex items-center justify-center rounded-full bg-success/20 p-3 mb-4">
           <CheckCircle className="h-6 w-6 text-success" />
         </div>
-        <p className="text-foreground font-medium">
+        <p className="text-foreground font-normal" style={{ letterSpacing: '0.01em' }}>
           Sent! You'll receive your detailed results within 5 minutes.
         </p>
       </div>
