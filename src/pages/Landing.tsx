@@ -78,87 +78,97 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           {/* Card 1: Quick Assessment */}
           <div
             onClick={onStart}
-            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-primary hover:scale-[1.02] transition-all duration-350 group"
+            className="glass-card p-8 text-left cursor-pointer hover:border-white/20 transition-all duration-350 group flex flex-col h-full"
           >
-            <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-primary/20 p-3">
-              <BarChart3 className="h-7 w-7 text-primary" />
-            </div>
-            
-            <h3 className="text-xl font-bold text-foreground mb-1">Quick Assessment</h3>
-            <p className="text-sm text-primary mb-4">Find Your Automation Opportunities</p>
-            
-            <p className="text-muted-foreground text-sm mb-5">
-              Not sure where to start? Take our 3-minute quiz to discover bottlenecks in your Sales, Marketing, and Operations.
-            </p>
-            
-            <div className="space-y-2 mb-6">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                15 quick questions
+            {/* Content area - flex-1 to push button to bottom */}
+            <div className="flex-1">
+              <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-primary/20 p-3">
+                <BarChart3 className="h-7 w-7 text-primary" />
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                Instant results
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                Personalized recommendations
+
+              <h3 className="text-xl font-bold text-foreground mb-1">Quick Assessment</h3>
+              <p className="text-sm text-primary mb-4">Find Your Automation Opportunities</p>
+
+              <p className="text-muted-foreground text-sm mb-5">
+                Not sure where to start? Take our 3-minute quiz to discover bottlenecks in your Sales, Marketing, and Operations.
+              </p>
+
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  15 quick questions
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  Instant results
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  Personalized recommendations
+                </div>
               </div>
             </div>
 
-            <button className="btn-primary w-full flex items-center justify-center gap-2 group-hover:shadow-lg">
-              Start Assessment
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-            
-            <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
-              <Clock className="h-3 w-3" />
-              Takes 3 minutes
-            </p>
+            {/* Button area - always at bottom */}
+            <div className="mt-auto pt-2">
+              <button className="btn-primary w-full flex items-center justify-center gap-2">
+                Start Assessment
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+
+              <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
+                <Clock className="h-3 w-3" />
+                Takes 3 minutes
+              </p>
+            </div>
           </div>
 
           {/* Card 2: Implementation Guide */}
           <div
             onClick={() => navigate('/implementation-guide')}
-            className="glass-card p-8 text-left cursor-pointer border-l-4 border-l-accent hover:scale-[1.02] transition-all duration-350 group"
+            className="glass-card p-8 text-left cursor-pointer hover:border-white/20 transition-all duration-350 group flex flex-col h-full"
           >
-            <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-accent/20 p-3">
-              <Rocket className="h-7 w-7 text-accent" />
-            </div>
-            
-            <h3 className="text-xl font-bold text-foreground mb-1">Implementation Guide</h3>
-            <p className="text-sm text-accent mb-4">Get a Custom AI Roadmap</p>
-            
-            <p className="text-muted-foreground text-sm mb-5">
-              Already know your challenge? Describe your business process and receive a detailed automation implementation plan.
-            </p>
-            
-            <div className="space-y-2 mb-6">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                Custom AI analysis
+            {/* Content area - flex-1 to push button to bottom */}
+            <div className="flex-1">
+              <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-accent/20 p-3">
+                <Rocket className="h-7 w-7 text-accent" />
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                Step-by-step roadmap
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Check className="h-4 w-4 text-success" />
-                ROI estimation
+
+              <h3 className="text-xl font-bold text-foreground mb-1">Implementation Guide</h3>
+              <p className="text-sm text-accent mb-4">Get a Custom AI Roadmap</p>
+
+              <p className="text-muted-foreground text-sm mb-5">
+                Already know your challenge? Describe your business process and receive a detailed automation implementation plan.
+              </p>
+
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  Custom AI analysis
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  Step-by-step roadmap
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Check className="h-4 w-4 text-success" />
+                  ROI estimation
+                </div>
               </div>
             </div>
 
-            <button className="w-full relative overflow-hidden bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-350 hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:shadow-lg"
-              style={{ boxShadow: '0 0 20px hsl(263, 70%, 58%, 0.2)' }}
-            >
-              Get Your Guide
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-            
-            <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
-              <Zap className="h-3 w-3" />
-              Delivered in 10 minutes
-            </p>
+            {/* Button area - always at bottom */}
+            <div className="mt-auto pt-2">
+              <button className="w-full bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-xl transition-all duration-350 flex items-center justify-center gap-2">
+                Get Your Guide
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+
+              <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
+                <Zap className="h-3 w-3" />
+                Delivered in 10 minutes
+              </p>
+            </div>
           </div>
         </div>
 
