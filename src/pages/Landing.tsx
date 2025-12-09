@@ -27,9 +27,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
       <div className="pointer-events-none absolute inset-0 bg-gradient-radial" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
 
-      {/* Floating glow orbs */}
-      <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-      <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl" style={{ animationDelay: '1.5s' }} />
+      {/* Floating glow orbs - subtle */}
+      <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+      <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-accent/5 blur-3xl" style={{ animationDelay: '1.5s' }} />
 
       <div
         className={cn(
@@ -39,15 +39,15 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         style={{ willChange: 'opacity' }}
       >
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm text-primary">
-          <span className="animate-pulse h-2 w-2 rounded-full bg-primary" />
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-card/60 px-4 py-1.5 text-sm text-muted-foreground">
+          <span className="animate-pulse h-2 w-2 rounded-full bg-primary/70" />
           AI Ops Compass
         </div>
 
         {/* Main headline */}
         <h1 className="mb-4 text-3xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl">
           Is Your Business Ready for{' '}
-          <span className="text-gradient">AI Automation</span>?
+          <em className="italic text-primary">AI Automation</em>?
         </h1>
 
         {/* Subheadline */}
