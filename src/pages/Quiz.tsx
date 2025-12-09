@@ -78,7 +78,8 @@ export function Quiz({
       {/* Exit button */}
       <button
         onClick={handleExitClick}
-        className="absolute left-4 top-4 z-10 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-350"
+        className="absolute left-4 top-4 z-10 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-450"
+        style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.01em', fontWeight: 400 }}
       >
         <LogOut className="h-4 w-4" />
         <span>Exit</span>

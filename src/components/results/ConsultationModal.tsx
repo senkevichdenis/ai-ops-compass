@@ -48,8 +48,8 @@ export function ConsultationModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+      <div
+        className="absolute inset-0 bg-background/90 backdrop-blur-md"
         onClick={onClose}
       />
 

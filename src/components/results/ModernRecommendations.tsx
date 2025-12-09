@@ -1,4 +1,4 @@
-import { Check, Target, Megaphone, Cog, Sparkles, MapPin } from 'lucide-react';
+import { Check, Target, Megaphone, Cog, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { generateRecommendations, Recommendation } from '@/data/recommendations';
 
@@ -36,25 +36,19 @@ function SectionCard({
   icon: Icon,
   title,
   count,
-  recommendations,
-  borderColor,
-  iconBg,
-  numberBg
+  recommendations
 }: {
   icon: React.ElementType;
   title: string;
   count: number;
   recommendations: Recommendation[];
-  borderColor: string;
-  iconBg: string;
-  numberBg: string;
 }) {
   if (count === 0) {
     return (
-      <div className={cn("glass-card border-l-4", borderColor)}>
+      <div className="glass-card">
         <div className="flex items-center gap-3 mb-4">
-          <div className={cn("flex items-center justify-center w-8 h-8 rounded-full", iconBg)}>
-            <Icon className="h-4 w-4" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+            <Icon className="h-4 w-4" style={{ color: 'rgba(255, 255, 255, 0.7)' }} />
           </div>
           <div>
             <span className="font-heading text-foreground">{title}</span>
@@ -69,10 +63,10 @@ function SectionCard({
   }
 
   return (
-    <div className={cn("glass-card border-l-4", borderColor)}>
+    <div className="glass-card">
       <div className="flex items-center gap-3 mb-4">
-        <div className={cn("flex items-center justify-center w-8 h-8 rounded-full", iconBg)}>
-          <Icon className="h-4 w-4" />
+        <div className="flex items-center justify-center w-8 h-8 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          <Icon className="h-4 w-4" style={{ color: 'rgba(255, 255, 255, 0.7)' }} />
         </div>
         <div>
           <span className="font-heading text-foreground">{title}</span>
@@ -85,7 +79,7 @@ function SectionCard({
             key={rec.questionId}
             rec={rec}
             index={index}
-            accentColor={numberBg}
+            accentColor="bg-white/10 text-white/70"
           />
         ))}
       </div>
@@ -132,8 +126,8 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
       {totalOpportunities > 0 && (
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20">
-              <MapPin className="h-4 w-4 text-primary" />
+            <div className="flex items-center justify-center w-8 h-8 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+              <MapPin className="h-4 w-4" style={{ color: 'rgba(255, 255, 255, 0.7)' }} />
             </div>
             <div>
               <h5 className="font-heading text-foreground">Your Improvement Roadmap</h5>
@@ -151,9 +145,6 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
               title="SALES"
               count={sales.length}
               recommendations={sales}
-              borderColor="border-l-sales"
-              iconBg="bg-sales/20 text-sales"
-              numberBg="bg-sales/20 text-sales"
             />
 
             {/* Marketing */}
@@ -162,9 +153,6 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
               title="MARKETING"
               count={marketing.length}
               recommendations={marketing}
-              borderColor="border-l-marketing"
-              iconBg="bg-marketing/20 text-marketing"
-              numberBg="bg-marketing/20 text-marketing"
             />
 
             {/* Operations */}
@@ -173,9 +161,6 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
               title="OPERATIONS"
               count={ops.length}
               recommendations={ops}
-              borderColor="border-l-ops"
-              iconBg="bg-ops/20 text-ops"
-              numberBg="bg-ops/20 text-ops"
             />
           </div>
         </div>

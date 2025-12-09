@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CheckCircle, ArrowRight, Lightbulb } from 'lucide-react';
+import { Lightbulb } from 'lucide-react';
 import { sectionInfo } from '@/data/questions';
 
 interface SectionTransitionProps {
@@ -59,16 +59,8 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       )}
       style={{ willChange: 'opacity' }}
     >
-      {/* Checkmark icon */}
-      <div
-        className="mb-6 rounded-full p-4"
-        style={{ backgroundColor: 'rgba(32, 211, 238, 0.2)' }}
-      >
-        <CheckCircle
-          className="h-16 w-16"
-          style={{ color: '#20d3ee' }}
-        />
-      </div>
+      {/* Subtle decorative line */}
+      <div className="mb-6 w-16 h-0.5 rounded-full bg-gradient-to-r from-white/30 to-white/5" />
 
       {/* Completion message */}
       <h4 className="font-heading mb-6 text-foreground">
@@ -88,7 +80,7 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
             className="h-full rounded-full progress-bar-fill"
             style={{
               width: `${progressPercent}%`,
-              backgroundColor: '#20d3ee'
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, #20d3ee 100%)'
             }}
           />
         </div>
@@ -121,10 +113,9 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       {/* Continue button */}
       <button
         onClick={onContinue}
-        className="btn-primary flex items-center gap-2 px-8 py-4"
+        className="btn-primary px-8 py-4"
       >
         Continue to {nextInfo.shortName}
-        <ArrowRight className="h-5 w-5" />
       </button>
     </div>
   );

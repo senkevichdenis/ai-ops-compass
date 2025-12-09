@@ -277,9 +277,7 @@ export function ImplementationGuide() {
                   Submitting...
                 </span>
               ) : (
-                <>
-                  ✨ Get Your Free Implementation Guide →
-                </>
+                'Get Your Free Implementation Guide'
               )}
             </button>
 

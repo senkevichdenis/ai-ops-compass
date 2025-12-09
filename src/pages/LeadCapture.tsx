@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Target, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LeadCaptureProps {
@@ -10,17 +9,13 @@ interface LeadCaptureProps {
 export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isReady, setIsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Wait for mount, then fade in as ONE unit
+  // Fade in on mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsReady(true);
-      requestAnimationFrame(() => {
-        setIsVisible(true);
-      });
-    }, 100);
+      setIsVisible(true);
+    }, 50);
     return () => clearTimeout(timer);
   }, []);
 
@@ -28,15 +23,6 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
     e.preventDefault();
     onSubmit({ name, email });
   };
-
-  // Loading state
-  if (!isReady) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" style={{ color: '#20d3ee' }} />
-      </div>
-    );
-  }
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-12 bg-gradient-radial">
@@ -47,11 +33,6 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
         )}
         style={{ willChange: 'opacity' }}
       >
-        {/* Icon */}
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(32, 211, 238, 0.2)' }}>
-          <Target className="h-8 w-8" style={{ color: '#20d3ee' }} />
-        </div>
-
         {/* Headline */}
         <h4 className="font-heading mb-2 text-foreground">
           Your Results Are Ready!
@@ -85,7 +66,7 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
             />
           </div>
           <button type="submit" className="btn-primary w-full">
-            Get My Results →
+            Get My Results
           </button>
         </form>
 
