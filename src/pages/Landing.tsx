@@ -43,7 +43,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
       >
         {/* Badge - pill style with orange glow */}
         <div
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-normal mb-6"
           style={{
             background: 'rgba(0, 0, 0, 0.3)',
             border: '1px solid rgba(253, 186, 114, 0.3)',
@@ -61,7 +61,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         </h1>
 
         {/* Subheadline - match card title style */}
-        <p className="mb-10 text-xl font-medium text-foreground/90 max-w-2xl mx-auto">
+        <p className="mb-10 text-xl font-normal text-foreground/90 max-w-2xl mx-auto" style={{ letterSpacing: '0.01em' }}>
           Discover automation opportunities or get a custom implementation roadmap for your process.
         </p>
 
@@ -79,7 +79,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         )}
 
         {/* Choose Your Path - whiter */}
-        <p className="text-sm font-medium text-foreground/80 mb-6 tracking-wide uppercase">
+        <p className="text-sm font-normal text-foreground/80 mb-6 uppercase" style={{ letterSpacing: '0.01em' }}>
           Choose Your Path
         </p>
 
@@ -92,10 +92,10 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           >
             <div className="flex-1">
               {/* Small label - ORANGE */}
-              <p className="text-xs font-medium mb-2" style={{ color: '#fdba72' }}>Assessment</p>
+              <p className="text-xs font-normal mb-2" style={{ color: '#fdba72', letterSpacing: '0.01em' }}>Assessment</p>
 
               {/* Title - white, size +1 */}
-              <h3 className="font-heading text-[21px] font-medium text-foreground mb-3">
+              <h3 className="font-heading text-[21px] font-normal text-foreground mb-3" style={{ letterSpacing: '0.01em' }}>
                 Quick Assessment
               </h3>
 
@@ -136,10 +136,10 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           >
             <div className="flex-1">
               {/* Small label - gray */}
-              <p className="text-xs font-medium text-muted-foreground mb-2">Roadmap</p>
+              <p className="text-xs font-normal text-muted-foreground mb-2" style={{ letterSpacing: '0.01em' }}>Roadmap</p>
 
               {/* Title - ORANGE, size +2 */}
-              <h3 className="font-heading text-[22px] font-medium mb-3" style={{ color: '#fdba72' }}>
+              <h3 className="font-heading text-[22px] font-normal mb-3" style={{ color: '#fdba72', letterSpacing: '0.01em' }}>
                 Implementation Guide
               </h3>
 
@@ -167,7 +167,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
             {/* Button - thinner font, larger size for comparison */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center text-[16px] font-medium">
+              <button className="btn-primary w-full flex items-center justify-center text-[16px] font-normal">
                 Get Your Guide
               </button>
             </div>

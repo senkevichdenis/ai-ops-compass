@@ -30,7 +30,7 @@ export function SectionBreakdown({ scores }: SectionBreakdownProps) {
       {sections.map((section, index) => (
         <div key={section.key} className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="font-medium text-foreground">{section.label}</span>
+            <span className="font-normal text-foreground" style={{ letterSpacing: '0.01em' }}>{section.label}</span>
             <span className="text-sm text-muted-foreground">
               {section.score}/10
             </span>

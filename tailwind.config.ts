@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Satoshi', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'],
       },
       spacing: {
         '0': '0px',

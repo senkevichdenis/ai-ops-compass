@@ -187,7 +187,7 @@ export function ImplementationGuide() {
             {/* Name row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label className="block text-sm font-normal text-foreground mb-2" style={{ letterSpacing: '0.01em' }}>
                   First Name
                 </label>
                 <input
@@ -202,7 +202,7 @@ export function ImplementationGuide() {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
+                <label className="block text-sm font-normal text-foreground mb-2" style={{ letterSpacing: '0.01em' }}>
                   Last Name
                 </label>
                 <input
@@ -220,7 +220,7 @@ export function ImplementationGuide() {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
+              <label className="block text-sm font-normal text-foreground mb-2" style={{ letterSpacing: '0.01em' }}>
                 Work Email
               </label>
               <input
@@ -237,7 +237,7 @@ export function ImplementationGuide() {
 
             {/* Business Process */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
+              <label className="block text-sm font-normal text-foreground mb-2" style={{ letterSpacing: '0.01em' }}>
                 Describe Your Business Process or Challenge
               </label>
               <textarea

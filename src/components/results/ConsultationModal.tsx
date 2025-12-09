@@ -82,7 +82,7 @@ export function ConsultationModal({
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-foreground">
+                <label className="mb-1.5 block text-sm font-normal text-foreground" style={{ letterSpacing: '0.01em' }}>
                   Full Name *
                 </label>
                 <input
@@ -96,7 +96,7 @@ export function ConsultationModal({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-foreground">
+                <label className="mb-1.5 block text-sm font-normal text-foreground" style={{ letterSpacing: '0.01em' }}>
                   Work Email *
                 </label>
                 <input
@@ -110,7 +110,7 @@ export function ConsultationModal({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-foreground">
+                <label className="mb-1.5 block text-sm font-normal text-foreground" style={{ letterSpacing: '0.01em' }}>
                   Company Name <span className="text-muted-foreground">(optional)</span>
                 </label>
                 <input
@@ -123,7 +123,7 @@ export function ConsultationModal({
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-foreground">
+                <label className="mb-1.5 block text-sm font-normal text-foreground" style={{ letterSpacing: '0.01em' }}>
                   Biggest automation challenge? <span className="text-muted-foreground">(optional)</span>
                 </label>
                 <textarea
