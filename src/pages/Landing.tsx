@@ -121,9 +121,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </div>
             </div>
 
-            {/* Button - orange hover */}
+            {/* Button */}
             <div className="mt-auto">
-              <button className="btn-primary-orange w-full flex items-center justify-center">
+              <button className="btn-primary w-full flex items-center justify-center">
                 Start Assessment
               </button>
             </div>
@@ -135,11 +135,11 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
             className="glass-card text-left cursor-pointer flex flex-col h-full"
           >
             <div className="flex-1">
-              {/* Small label - gray */}
-              <p className="text-xs font-normal text-muted-foreground mb-2" style={{ letterSpacing: '0.01em' }}>Roadmap</p>
+              {/* Small label - ORANGE */}
+              <p className="text-xs font-normal mb-2" style={{ color: '#fdba72', letterSpacing: '0.01em' }}>Roadmap</p>
 
-              {/* Title - ORANGE, size +2 */}
-              <h3 className="font-heading text-[22px] font-normal mb-3" style={{ color: '#fdba72', letterSpacing: '0.01em' }}>
+              {/* Title - WHITE */}
+              <h3 className="font-heading text-[21px] font-normal text-foreground mb-3" style={{ letterSpacing: '0.01em' }}>
                 Implementation Guide
               </h3>
 
@@ -165,9 +165,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </div>
             </div>
 
-            {/* Button - thinner font, larger size for comparison */}
+            {/* Button */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center text-[16px] font-normal">
+              <button className="btn-primary w-full flex items-center justify-center">
                 Get Your Guide
               </button>
             </div>

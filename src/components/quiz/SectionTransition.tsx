@@ -61,18 +61,12 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
     >
       {/* Checkmark icon */}
       <div
-        className={cn(
-          "mb-6 rounded-full p-4",
-          completedSection === 'sales' && "bg-sales/20",
-          completedSection === 'marketing' && "bg-marketing/20"
-        )}
+        className="mb-6 rounded-full p-4"
+        style={{ backgroundColor: 'rgba(32, 211, 238, 0.2)' }}
       >
         <CheckCircle
-          className={cn(
-            "h-16 w-16",
-            completedSection === 'sales' && "text-sales",
-            completedSection === 'marketing' && "text-marketing"
-          )}
+          className="h-16 w-16"
+          style={{ color: '#20d3ee' }}
         />
       </div>
 
@@ -89,14 +83,13 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
         </div>
 
         {/* Progress bar */}
-        <div className="w-full h-3 bg-secondary rounded-full overflow-hidden mb-4">
+        <div className="w-full h-3 bg-muted/50 rounded-full overflow-hidden mb-4">
           <div
-            className={cn(
-              "h-full rounded-full progress-bar-fill",
-              completedSection === 'sales' && "bg-sales",
-              completedSection === 'marketing' && "bg-marketing"
-            )}
-            style={{ width: `${progressPercent}%` }}
+            className="h-full rounded-full progress-bar-fill"
+            style={{
+              width: `${progressPercent}%`,
+              backgroundColor: '#20d3ee'
+            }}
           />
         </div>
 
@@ -128,12 +121,7 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       {/* Continue button */}
       <button
         onClick={onContinue}
-        className={cn(
-          "flex items-center gap-2 font-semibold px-8 py-4 rounded-xl transition-all duration-normal",
-          nextSection === 'marketing'
-            ? "bg-marketing text-white hover:bg-marketing/90"
-            : "bg-ops text-white hover:bg-ops/90"
-        )}
+        className="btn-primary flex items-center gap-2 px-8 py-4"
       >
         Continue to {nextInfo.shortName}
         <ArrowRight className="h-5 w-5" />

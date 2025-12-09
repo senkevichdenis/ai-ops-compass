@@ -96,7 +96,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 text-primary animate-spin" />
+          <Loader2 className="h-8 w-8 animate-spin" style={{ color: '#20d3ee' }} />
           <p className="text-muted-foreground">Preparing your results...</p>
         </div>
       </div>

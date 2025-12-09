@@ -27,11 +27,9 @@ export function QuizProgress({ currentQuestion, currentSection }: QuizProgressPr
             <div
               className={cn(
                 "section-dot",
-                currentSection === section && "active",
-                section === 'sales' && "bg-sales",
-                section === 'marketing' && "bg-marketing",
-                section === 'ops' && "bg-ops"
+                currentSection === section && "active"
               )}
+              style={{ backgroundColor: '#20d3ee' }}
             />
             <span
               className={cn(
@@ -48,13 +46,11 @@ export function QuizProgress({ currentQuestion, currentSection }: QuizProgressPr
       {/* Progress bar */}
       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted/50">
         <div
-          className={cn(
-            "progress-bar-fill absolute left-0 top-0 h-full rounded-full",
-            currentSection === 'sales' && "bg-gradient-to-r from-sales to-sales/80",
-            currentSection === 'marketing' && "bg-gradient-to-r from-marketing to-marketing/80",
-            currentSection === 'ops' && "bg-gradient-to-r from-ops to-ops/80"
-          )}
-          style={{ width: `${progress}%` }}
+          className="progress-bar-fill absolute left-0 top-0 h-full rounded-full"
+          style={{
+            width: `${progress}%`,
+            background: 'linear-gradient(90deg, #e0f7ff 0%, #20d3ee 100%)'
+          }}
         />
       </div>
 

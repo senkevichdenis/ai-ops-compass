@@ -33,7 +33,7 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
   if (!isReady) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-primary animate-spin" />
+        <Loader2 className="h-8 w-8 animate-spin" style={{ color: '#20d3ee' }} />
       </div>
     );
   }
@@ -48,8 +48,8 @@ export function LeadCapture({ onSubmit, onSkip }: LeadCaptureProps) {
         style={{ willChange: 'opacity' }}
       >
         {/* Icon */}
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
-          <Target className="h-8 w-8 text-primary" />
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(32, 211, 238, 0.2)' }}>
+          <Target className="h-8 w-8" style={{ color: '#20d3ee' }} />
         </div>
 
         {/* Headline */}
