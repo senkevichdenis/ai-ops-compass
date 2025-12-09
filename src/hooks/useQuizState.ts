@@ -109,7 +109,7 @@ export function useQuizState() {
       };
     });
 
-    // Auto-advance after delay
+    // Auto-advance after delay (increased for softer feel)
     setTimeout(() => {
       setState(prev => {
         const nextQuestion = prev.currentQuestion + 1;
@@ -127,7 +127,7 @@ export function useQuizState() {
         
         return { ...prev, currentQuestion: nextQuestion };
       });
-    }, 300);
+    }, 450); // Increased from 300ms to 450ms for softer feel
   }, [saveProgress, clearProgress]);
 
   const goToPreviousQuestion = useCallback(() => {
@@ -172,6 +172,20 @@ export function useQuizState() {
     });
   }, [clearProgress]);
 
+  const exitToLanding = useCallback(() => {
+    // Save current progress and return to landing
+    setState(prev => {
+      if (prev.answers.some(a => a !== null)) {
+        saveProgress(prev.currentQuestion, prev.answers);
+        setHasSavedProgress(true);
+      }
+      return {
+        ...prev,
+        currentScreen: 'landing',
+      };
+    });
+  }, [saveProgress]);
+
   const getCurrentSection = useCallback(() => {
     const q = state.currentQuestion;
     if (q < 5) return 'sales';
@@ -189,6 +203,39 @@ export function useQuizState() {
     };
   }, [state.answers]);
 
+  // For shared results view
+  const setScoresFromParams = useCallback((sales: number, marketing: number, ops: number) => {
+    // Create dummy answers based on scores
+    const createDummyAnswers = (score: number, count: number) => {
+      const answers: (number | null)[] = [];
+      let remaining = score;
+      for (let i = 0; i < count; i++) {
+        if (remaining >= 2) {
+          answers.push(2);
+          remaining -= 2;
+        } else if (remaining >= 1) {
+          answers.push(1);
+          remaining -= 1;
+        } else {
+          answers.push(0);
+        }
+      }
+      return answers;
+    };
+
+    const dummyAnswers = [
+      ...createDummyAnswers(sales, 5),
+      ...createDummyAnswers(marketing, 5),
+      ...createDummyAnswers(ops, 5)
+    ];
+
+    setState(prev => ({
+      ...prev,
+      currentScreen: 'results',
+      answers: dummyAnswers,
+    }));
+  }, []);
+
   return {
     state,
     hasSavedProgress,
@@ -200,7 +247,9 @@ export function useQuizState() {
     submitLead,
     skipLead,
     restartQuiz,
+    exitToLanding,
     getCurrentSection,
     getScores,
+    setScoresFromParams,
   };
 }

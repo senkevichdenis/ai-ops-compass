@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, CheckCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -23,13 +22,24 @@ export function ConsultationModal({
   const [challenge, setChallenge] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Update form when prefill values change
+  useEffect(() => {
+    setName(prefillName);
+    setEmail(prefillEmail);
+  }, [prefillName, prefillEmail]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit({ name, email, company, challenge });
     setIsSubmitted(true);
     setTimeout(() => {
       onClose();
-      setIsSubmitted(false);
+      // Reset state after close animation
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setCompany('');
+        setChallenge('');
+      }, 300);
     }, 2000);
   };
 
@@ -48,7 +58,7 @@ export function ConsultationModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-muted-foreground hover:text-foreground transition-colors"
+          className="absolute right-4 top-4 text-muted-foreground hover:text-foreground transition-colors duration-300"
         >
           <X className="h-5 w-5" />
         </button>
@@ -58,8 +68,8 @@ export function ConsultationModal({
             <div className="mb-4 rounded-full bg-success/20 p-3">
               <CheckCircle className="h-10 w-10 text-success" />
             </div>
-            <h3 className="text-xl font-semibold text-foreground">Thanks!</h3>
-            <p className="text-muted-foreground">We'll be in touch soon.</p>
+            <h3 className="text-xl font-semibold text-foreground">Thank you!</h3>
+            <p className="text-muted-foreground">We'll reach out within 24 hours.</p>
           </div>
         ) : (
           <>

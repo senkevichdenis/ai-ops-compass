@@ -1,7 +1,8 @@
 import { getTierByScore } from '@/data/tiers';
+import { questions, answerOptions } from '@/data/questions';
+import { getRecommendationsForWebhook, getDoingWellList } from '@/data/recommendations';
 
-const WEBHOOK_URL_LEAD = '[PLACEHOLDER_WEBHOOK_URL_LEAD]';
-const WEBHOOK_URL_CONSULTATION = '[PLACEHOLDER_WEBHOOK_URL_CONSULTATION]';
+const WEBHOOK_URL = 'https://n8n.isendora.com/webhook/9d16138a-8cb6-49c8-8ed9-d3cbc6d253a1';
 
 interface LeadData {
   name: string;
@@ -20,24 +21,55 @@ interface Scores {
   total: number;
 }
 
+function getSectionName(section: 'sales' | 'marketing' | 'ops'): string {
+  switch (section) {
+    case 'sales': return 'Sales';
+    case 'marketing': return 'Marketing';
+    case 'ops': return 'Ops';
+  }
+}
+
+function getAnswerLabel(score: number): string {
+  const option = answerOptions.find(o => o.score === score);
+  return option?.label || 'Unknown';
+}
+
+function buildAnswersArray(answers: (number | null)[]) {
+  return answers.map((score, index) => {
+    const question = questions[index];
+    return {
+      section: getSectionName(question.section),
+      questionNumber: index + 1,
+      question: question.main,
+      answer: getAnswerLabel(score ?? 0),
+      score: score ?? 0
+    };
+  });
+}
+
 export async function sendLeadWebhook(
   lead: LeadData,
   scores: Scores,
   answers: (number | null)[]
 ) {
   const tier = getTierByScore(scores.total);
+  const recommendations = getRecommendationsForWebhook(answers);
+  const doingWell = getDoingWellList(answers);
   
   const payload = {
-    type: 'lead_capture',
+    requestType: 'FreeAssessment',
     timestamp: new Date().toISOString(),
     lead,
     scores,
     tier: tier.id,
-    answers: answers.map(a => a ?? 0),
+    tierSummary: tier.interpretation,
+    answers: buildAnswersArray(answers),
+    recommendations,
+    doingWell
   };
 
   try {
-    await fetch(WEBHOOK_URL_LEAD, {
+    await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -53,18 +85,23 @@ export async function sendConsultationWebhook(
   answers: (number | null)[]
 ) {
   const tier = getTierByScore(scores.total);
+  const recommendations = getRecommendationsForWebhook(answers);
+  const doingWell = getDoingWellList(answers);
   
   const payload = {
-    type: 'consultation_request',
+    requestType: 'ConsultationRequest',
     timestamp: new Date().toISOString(),
     lead,
     scores,
     tier: tier.id,
-    answers: answers.map(a => a ?? 0),
+    tierSummary: tier.interpretation,
+    answers: buildAnswersArray(answers),
+    recommendations,
+    doingWell
   };
 
   try {
-    await fetch(WEBHOOK_URL_CONSULTATION, {
+    await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
