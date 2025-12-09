@@ -208,8 +208,18 @@
 }
 
 @layer utilities {
+  /* Custom duration classes for smoother transitions */
+  .duration-350 {
+    transition-duration: 350ms;
+  }
+
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+
+  /* Animation classes */
   .animate-fade-in {
-    animation: fadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .animate-fade-out {
@@ -217,7 +227,7 @@
   }
 
   .animate-slide-up {
-    animation: slideUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .animate-scale-in {
@@ -242,6 +252,12 @@
 
   .animate-bar-fill {
     animation: barFill 1s ease-out forwards;
+  }
+
+  /* GPU-accelerated transforms */
+  .gpu-accelerated {
+    will-change: opacity, transform;
+    transform: translateZ(0);
   }
 }
 

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Rocket, Lock, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Rocket, Lock, CheckCircle2, Check } from 'lucide-react';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 const WEBHOOK_URL = 'https://n8n.isendora.com/webhook/9d16138a-8cb6-49c8-8ed9-d3cbc6d253a1';
 
@@ -9,6 +10,8 @@ export function ImplementationGuide() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,10 +19,27 @@ export function ImplementationGuide() {
     businessProcess: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [textareaError, setTextareaError] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Smooth loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+      requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const charCount = formData.businessProcess.length;
+  const isCharCountValid = charCount >= 100;
+  const charsNeeded = 100 - charCount;
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (formData.firstName.trim().length < 2) {
       newErrors.firstName = 'First name must be at least 2 characters';
     }
@@ -29,19 +49,26 @@ export function ImplementationGuide() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    if (formData.businessProcess.trim().length < 100) {
-      newErrors.businessProcess = `Please provide more detail (${formData.businessProcess.length}/100 minimum characters)`;
+    if (!isCharCountValid) {
+      newErrors.businessProcess = 'too_short';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
-      toast.error('Please fix the errors in the form');
+      // Show specific toast for character count error
+      if (errors.businessProcess === 'too_short' || !isCharCountValid) {
+        toast.error('Please provide at least 100 characters so we can give you detailed recommendations');
+        setTextareaError(true);
+        textareaRef.current?.focus();
+      } else {
+        toast.error('Please fix the errors in the form');
+      }
       return;
     }
 
@@ -77,7 +104,7 @@ export function ImplementationGuide() {
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <div className="w-full max-w-md text-center animate-fade-in">
+        <div className="w-full max-w-md text-center animate-fade-in" style={{ willChange: 'opacity' }}>
           <div className="mb-6 inline-flex items-center justify-center rounded-full bg-success/20 p-4">
             <CheckCircle2 className="h-12 w-12 text-success" />
           </div>
@@ -120,6 +147,15 @@ export function ImplementationGuide() {
     );
   }
 
+  // Loading state
+  if (!isReady) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Background effects */}
@@ -128,7 +164,13 @@ export function ImplementationGuide() {
       <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center px-4 py-12">
-        <div className="w-full max-w-xl animate-fade-in">
+        <div
+          className={cn(
+            "w-full max-w-xl transition-opacity duration-400 ease-out",
+            isVisible ? 'opacity-100' : 'opacity-0'
+          )}
+          style={{ willChange: 'opacity' }}
+        >
           {/* Header */}
           <div className="text-center mb-8">
             <div className="mb-4 inline-flex items-center justify-center rounded-full bg-accent/20 p-3">
@@ -201,18 +243,28 @@ export function ImplementationGuide() {
                 Describe Your Business Process or Challenge
               </label>
               <textarea
+                ref={textareaRef}
                 value={formData.businessProcess}
-                onChange={(e) => setFormData(prev => ({ ...prev, businessProcess: e.target.value }))}
-                className="input-field min-h-[160px] resize-none"
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, businessProcess: e.target.value }));
+                  // Clear error state when user starts typing
+                  if (textareaError) setTextareaError(false);
+                }}
+                className={cn(
+                  "input-field min-h-[160px] resize-none transition-colors duration-350",
+                  textareaError && "border-destructive focus:border-destructive focus:ring-destructive/20"
+                )}
                 placeholder="Example: Every day, our sales team spends 2-3 hours manually entering leads from our website forms into HubSpot. They have to copy contact info, company details, and inquiry type, then assign to the right rep based on territory. We also send a welcome email manually. This process is error-prone and slow..."
               />
               <div className="flex justify-between items-center mt-1">
-                {errors.businessProcess ? (
-                  <p className="text-sm text-destructive">{errors.businessProcess}</p>
+                {isCharCountValid ? (
+                  <span className="text-sm text-success flex items-center gap-1">
+                    {charCount} characters <Check className="w-4 h-4" />
+                  </span>
                 ) : (
-                  <p className="text-sm text-muted-foreground">
-                    {formData.businessProcess.length} / 100 minimum characters
-                  </p>
+                  <span className="text-sm text-muted-foreground">
+                    {charCount} characters — {charsNeeded} more needed for best results
+                  </span>
                 )}
               </div>
             </div>

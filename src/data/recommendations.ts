@@ -133,21 +133,27 @@ export function generateRecommendations(
   totalScore: number
 ): GeneratedRecommendations {
   const tier = getTierByScore(totalScore);
-  
+
   const salesRecs: Recommendation[] = [];
   const marketingRecs: Recommendation[] = [];
   const opsRecs: Recommendation[] = [];
   const doingWell: string[] = [];
 
+  // Process all 15 questions
   answers.forEach((score, index) => {
     const questionId = index + 1;
     const recommendation = questionRecommendations.find(r => r.questionId === questionId);
     const question = questions[index];
-    
+
     if (!recommendation || !question) return;
 
-    if (score !== null && score < 2) {
-      // Needs improvement
+    // Score < 2 (including 0, 1, and null treated as 0) = needs improvement
+    // Score === 2 = doing well
+    if (score === 2) {
+      // Doing well - use the recommendation title for labeling
+      doingWell.push(recommendation.title.replace('Automate ', '').replace('Auto-Generate ', '').replace('Set Up ', '').replace('Build ', '').replace('Add ', '').replace('Implement ', ''));
+    } else {
+      // Needs improvement (score is 0, 1, or null)
       if (recommendation.section === 'sales') {
         salesRecs.push(recommendation);
       } else if (recommendation.section === 'marketing') {
@@ -155,11 +161,25 @@ export function generateRecommendations(
       } else {
         opsRecs.push(recommendation);
       }
-    } else if (score === 2) {
-      // Doing well - use the recommendation title for labeling
-      doingWell.push(recommendation.title.replace('Automate ', '').replace('Auto-Generate ', '').replace('Set Up ', '').replace('Build ', '').replace('Add ', '').replace('Implement ', ''));
     }
   });
+
+  // Debug logging to verify all 15 questions are counted
+  if (process.env.NODE_ENV === 'development') {
+    const totalProcessed = salesRecs.length + marketingRecs.length + opsRecs.length + doingWell.length;
+    console.log('Questions answered:', answers.length);
+    console.log('Recommendations generated:', salesRecs.length + marketingRecs.length + opsRecs.length);
+    console.log('Doing well items:', doingWell.length);
+    console.log('Total (should be 15):', totalProcessed);
+
+    if (totalProcessed !== 15) {
+      console.error('BUG: Not all questions accounted for!', {
+        expected: 15,
+        actual: totalProcessed,
+        answers
+      });
+    }
+  }
 
   return {
     sales: salesRecs,

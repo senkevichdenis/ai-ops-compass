@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LogOut } from 'lucide-react';
 import { questions } from '@/data/questions';
 import { QuizProgress } from '@/components/quiz/QuizProgress';
 import { QuestionCard } from '@/components/quiz/QuestionCard';
 import { SectionTransition } from '@/components/quiz/SectionTransition';
 import { ExitConfirmDialog } from '@/components/quiz/ExitConfirmDialog';
+import { cn } from '@/lib/utils';
 
 interface QuizProps {
   currentQuestion: number;
@@ -28,6 +29,15 @@ export function Quiz({
   onExit,
 }: QuizProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Fade in on mount as ONE unit
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleExitClick = () => {
     setShowExitDialog(true);
@@ -58,11 +68,17 @@ export function Quiz({
   const question = questions[currentQuestion];
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-gradient-radial">
+    <div
+      className={cn(
+        "relative flex min-h-screen flex-col bg-gradient-radial transition-opacity duration-350 ease-out",
+        isVisible ? 'opacity-100' : 'opacity-0'
+      )}
+      style={{ willChange: 'opacity' }}
+    >
       {/* Exit button */}
       <button
         onClick={handleExitClick}
-        className="absolute left-4 top-4 z-10 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+        className="absolute left-4 top-4 z-10 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-350"
       >
         <LogOut className="h-4 w-4" />
         <span>Exit</span>
