@@ -43,7 +43,7 @@ export function AnswerCard({ score, label, subtitle, isSelected, onClick }: Answ
       )}
     >
       {getIcon()}
-      <span className="text-lg font-semibold text-foreground">{label}</span>
+      <span className="font-heading text-lg text-foreground">{label}</span>
       <span className="mt-1 text-sm text-muted-foreground">{subtitle}</span>
     </button>
   );

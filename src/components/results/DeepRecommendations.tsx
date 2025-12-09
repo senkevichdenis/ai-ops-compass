@@ -20,9 +20,9 @@ function RecommendationCard({
   accentColor: string;
 }) {
   return (
-    <div 
+    <div
       className={cn(
-        "glass-card p-4 cursor-pointer transition-all duration-300 hover:scale-[1.01]",
+        "glass-card p-4 cursor-pointer transition-all duration-300",
         "border-l-4",
         accentColor
       )}
@@ -30,7 +30,7 @@ function RecommendationCard({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <h4 className="font-semibold text-foreground mb-1">{rec.title}</h4>
+          <h6 className="font-heading text-foreground mb-1">{rec.title}</h6>
           <p className="text-sm text-muted-foreground">{rec.shortDescription}</p>
         </div>
         <button className="flex-shrink-0 p-1 text-muted-foreground">
@@ -78,7 +78,7 @@ function SectionHeader({
           <Icon className={cn("h-5 w-5", colorClass)} />
         </div>
         <div className="text-left">
-          <span className="font-semibold text-foreground">{title}</span>
+          <span className="font-heading text-foreground">{title}</span>
           {allAutomated ? (
             <span className="ml-2 text-sm text-success">✓ All automated!</span>
           ) : (
@@ -129,10 +129,10 @@ export function DeepRecommendations({ answers, totalScore }: DeepRecommendations
     <div className="space-y-6">
       {/* Tier Summary */}
       <div className="glass-card p-6">
-        <h3 className="mb-3 text-lg font-semibold text-foreground flex items-center gap-2">
+        <h6 className="font-heading mb-3 text-foreground flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-primary" />
           What This Means
-        </h3>
+        </h6>
         <p className="text-muted-foreground leading-relaxed">{tierSummary}</p>
       </div>
 

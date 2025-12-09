@@ -204,8 +204,25 @@
   }
 
   .glass-card:hover {
-    box-shadow: 0px 15px 40px -5px rgba(0, 0, 0, 0.5);
-    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px -5px rgba(0,0,0,0.5);
+    /* NO transform - subtle border/shadow only */
+  }
+
+  /* === CTA CARD with glow (for consultation) === */
+  .cta-card {
+    background: #12172e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 34px -5px rgba(0,0,0,0.45);
+    transition: all 250ms ease;
+  }
+
+  .cta-card:hover {
+    border-color: rgba(39, 86, 247, 0.4);
+    box-shadow: 0 0 40px rgba(39, 86, 247, 0.2), 0 12px 40px -5px rgba(0,0,0,0.5);
+    /* Subtle glow effect - draws attention without jumping */
   }
 
   /* === BUTTONS === */
@@ -223,7 +240,7 @@
 
   .btn-primary:hover {
     background: linear-gradient(180deg, #3b82f6 0%, #2756f7 100%);
-    transform: translateY(-4px);
+    /* NO transform */
   }
 
   .btn-secondary {
@@ -240,6 +257,8 @@
 
   .btn-secondary:hover {
     background: rgba(39, 86, 247, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    /* NO transform */
   }
 
   .btn-ghost {
@@ -252,6 +271,7 @@
 
   .btn-ghost:hover {
     background: rgba(255, 255, 255, 0.07);
+    /* NO transform */
   }
 
   /* === INPUTS === */
@@ -314,9 +334,9 @@
   }
 
   .answer-card:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
+    /* NO transform */
   }
 
   .answer-card.selected {
@@ -398,7 +418,8 @@
   .ease-default { transition-timing-function: ease; }
   .ease-smooth { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
 
-  /* Hover effects */
+  /* Hover effects - RESERVED, not used by default */
+  /* Use only for special emphasis cases */
   .hover-lift:hover {
     transform: translateY(-4px);
   }

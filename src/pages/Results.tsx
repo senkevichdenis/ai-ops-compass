@@ -144,9 +144,9 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
           </div>
         )}
 
-        {/* CTA Section */}
+        {/* CTA Section - with glow effect */}
         {!isSharedView ? (
-          <div className="glass-card text-center mb-8">
+          <div className="cta-card text-center mb-8">
             <div className="badge mb-4">
               <Sparkles className="h-4 w-4 text-primary" />
               <span>Next Step</span>
@@ -162,7 +162,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
             </button>
           </div>
         ) : (
-          <div className="glass-card text-center mb-8">
+          <div className="cta-card text-center mb-8">
             <div className="badge mb-4">
               <Sparkles className="h-4 w-4 text-primary" />
               <span>Get Started</span>

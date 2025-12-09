@@ -51,7 +51,7 @@ export function QuestionCard({
     >
       {/* Question header */}
       <div className="mb-8 flex items-center justify-center gap-3">
-        <span className="text-3xl font-bold text-muted-foreground/50">
+        <span className="font-heading text-3xl text-muted-foreground/50">
           Q{questionNumber}
         </span>
         <span
@@ -67,9 +67,9 @@ export function QuestionCard({
       </div>
 
       {/* Main question */}
-      <h2 className="mb-4 text-center text-2xl font-bold leading-tight text-foreground md:text-3xl">
+      <h4 className="font-heading mb-4 text-center leading-tight text-foreground">
         {question.main}
-      </h2>
+      </h4>
 
       {/* Explanation */}
       <p className="mb-10 text-center text-muted-foreground leading-relaxed">

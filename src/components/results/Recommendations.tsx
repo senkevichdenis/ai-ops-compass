@@ -12,13 +12,13 @@ export function Recommendations({ totalScore }: RecommendationsProps) {
     <div className="space-y-6">
       {/* Interpretation */}
       <div className="glass-card p-6">
-        <h3 className="mb-3 text-lg font-semibold text-foreground">What This Means</h3>
+        <h6 className="font-heading mb-3 text-foreground">What This Means</h6>
         <p className="text-muted-foreground leading-relaxed">{tier.interpretation}</p>
       </div>
 
       {/* Recommendations */}
       <div className="glass-card p-6">
-        <h3 className="mb-4 text-lg font-semibold text-foreground">Quick Wins to Start</h3>
+        <h6 className="font-heading mb-4 text-foreground">Quick Wins to Start</h6>
         <ul className="space-y-3">
           {tier.recommendations.map((rec, index) => (
             <li key={index} className="flex items-start gap-3">

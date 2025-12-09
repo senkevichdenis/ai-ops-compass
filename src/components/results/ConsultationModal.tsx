@@ -68,14 +68,14 @@ export function ConsultationModal({
             <div className="mb-4 rounded-full bg-success/20 p-3">
               <CheckCircle className="h-10 w-10 text-success" />
             </div>
-            <h3 className="text-xl font-semibold text-foreground">Thank you!</h3>
+            <h5 className="font-heading text-foreground">Thank you!</h5>
             <p className="text-muted-foreground">We'll reach out within 24 hours.</p>
           </div>
         ) : (
           <>
-            <h2 className="mb-2 text-xl font-bold text-foreground md:text-2xl">
+            <h5 className="font-heading mb-2 text-foreground">
               Get Your Personalized Automation Roadmap
-            </h2>
+            </h5>
             <p className="mb-6 text-muted-foreground">
               Our team will analyze your results and create a custom action plan for your business.
             </p>

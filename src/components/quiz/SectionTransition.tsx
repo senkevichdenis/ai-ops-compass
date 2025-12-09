@@ -77,15 +77,15 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       </div>
 
       {/* Completion message */}
-      <h2 className="mb-6 text-2xl font-bold text-foreground md:text-3xl">
+      <h4 className="font-heading mb-6 text-foreground">
         {completedInfo.name} — Complete!
-      </h2>
+      </h4>
 
       {/* Score card with progress bar */}
       <div className="glass-card p-6 mb-6 w-full max-w-md">
         <div className="flex items-center justify-between mb-3">
           <span className="text-muted-foreground">Your {completedInfo.shortName} Score</span>
-          <span className="font-bold text-foreground text-lg">{sectionScore}/10</span>
+          <span className="font-heading text-foreground text-lg">{sectionScore}/10</span>
         </div>
 
         {/* Progress bar */}
@@ -129,16 +129,11 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       <button
         onClick={onContinue}
         className={cn(
-          "flex items-center gap-2 font-semibold px-8 py-4 rounded-xl transition-all duration-350 hover:scale-[1.02]",
+          "flex items-center gap-2 font-semibold px-8 py-4 rounded-xl transition-all duration-normal",
           nextSection === 'marketing'
-            ? "bg-marketing text-white"
-            : "bg-ops text-white"
+            ? "bg-marketing text-white hover:bg-marketing/90"
+            : "bg-ops text-white hover:bg-ops/90"
         )}
-        style={{
-          boxShadow: nextSection === 'marketing'
-            ? '0 0 30px hsl(263, 70%, 58%, 0.3)'
-            : '0 0 30px hsl(187, 85%, 43%, 0.3)'
-        }}
       >
         Continue to {nextInfo.shortName}
         <ArrowRight className="h-5 w-5" />

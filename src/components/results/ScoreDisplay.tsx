@@ -35,7 +35,7 @@ export function ScoreDisplay({ total, maxScore = 30 }: ScoreDisplayProps) {
       {/* Main score circle */}
       <div className="glass-card relative flex h-40 w-40 flex-col items-center justify-center rounded-full">
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-xl" />
-        <span className="relative text-5xl font-bold text-foreground">{displayScore}</span>
+        <span className="relative font-heading text-5xl text-foreground">{displayScore}</span>
         <span className="relative text-xl text-muted-foreground">/{maxScore}</span>
       </div>
 

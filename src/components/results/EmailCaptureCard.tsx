@@ -35,9 +35,9 @@ export function EmailCaptureCard({ onSubmit }: EmailCaptureCardProps) {
         <div className="flex items-center justify-center rounded-full bg-primary/20 p-2">
           <Mail className="h-5 w-5 text-primary" />
         </div>
-        <h3 className="text-lg font-semibold text-foreground">
+        <h6 className="font-heading text-foreground">
           Get Your Full Results by Email
-        </h3>
+        </h6>
       </div>
 
       <p className="mb-6 text-muted-foreground">

@@ -26,9 +26,9 @@ export function ExitConfirmDialog({ isOpen, onConfirm, onCancel }: ExitConfirmDi
           <X className="h-5 w-5" />
         </button>
 
-        <h3 className="mb-2 text-xl font-bold text-foreground">
+        <h5 className="font-heading mb-2 text-foreground">
           Exit assessment?
-        </h3>
+        </h5>
         <p className="mb-6 text-muted-foreground">
           Your progress will be saved and you can resume later.
         </p>
