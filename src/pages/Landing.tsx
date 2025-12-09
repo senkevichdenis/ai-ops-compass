@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, BarChart3, Rocket, Lock, Zap, Clock } from 'lucide-react';
+import { ArrowRight, Check, BarChart3, Lock, Zap, Clock, Sparkles, FileText, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LandingProps {
@@ -23,13 +23,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12">
-      {/* Background effects */}
+      {/* Background effects - SIMPLE */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-radial" />
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
-
-      {/* Floating glow orbs - subtle */}
-      <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-      <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" style={{ animationDelay: '1.5s' }} />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
 
       <div
         className={cn(
@@ -38,16 +34,16 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         )}
         style={{ willChange: 'opacity' }}
       >
-        {/* Badge - Datalumina style */}
+        {/* Badge - top */}
         <div className="badge mb-6">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           <span>AI Ops Compass</span>
         </div>
 
-        {/* Main headline - Satoshi font, white italic */}
+        {/* Main headline - with cyan gradient */}
         <h1 className="font-heading mb-4 text-foreground">
           Is Your Business Ready for{' '}
-          <em className="italic">AI Automation</em>?
+          <span className="text-gradient-cyan">AI Automation</span>?
         </h1>
 
         {/* Subheadline */}
@@ -73,135 +69,113 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           Choose Your Path
         </h6>
 
-        {/* Two-path cards - dashed border container */}
-        <div className="rounded-2xl border border-dashed border-white/10 p-1 mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Card 1: Quick Assessment */}
-            <div
-              onClick={onStart}
-              className="p-10 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-normal group flex flex-col h-full md:border-r md:border-dashed md:border-white/10"
-            >
-              <div className="flex-1">
-                {/* Category badge */}
-                <div className="badge mb-4">
-                  <BarChart3 className="h-4 w-4 text-primary" />
-                  <span>Assessment</span>
-                </div>
+        {/* Two-path cards - SEPARATE with gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
+          {/* Card 1: Quick Assessment */}
+          <div
+            onClick={onStart}
+            className="glass-card text-left cursor-pointer flex flex-col h-full group"
+          >
+            <div className="flex-1">
+              {/* Small label */}
+              <p className="text-sm text-muted-foreground mb-3">Assessment</p>
 
-                <h5 className="font-heading text-foreground mb-2">Quick Assessment</h5>
-                <p className="text-sm text-primary mb-4">Find Your Automation Opportunities</p>
+              {/* Title */}
+              <h3 className="font-heading text-2xl text-foreground mb-3">
+                Quick Assessment
+              </h3>
 
-                <p className="text-muted-foreground text-sm mb-6">
-                  Not sure where to start? Take our 3-minute quiz to discover bottlenecks in your Sales, Marketing, and Operations.
-                </p>
+              {/* Description */}
+              <p className="text-muted-foreground text-sm mb-6">
+                Take our 3-minute quiz to discover automation opportunities in Sales, Marketing, and Operations.
+              </p>
 
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    15 quick questions
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    Instant results
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    Personalized recommendations
-                  </div>
-                </div>
-              </div>
-
-              {/* Button */}
-              <div className="mt-auto">
-                <button className="btn-primary w-full flex items-center justify-center gap-2">
-                  Start Assessment
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </button>
-
-                <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  Takes 3 minutes
-                </p>
+              {/* Feature pills */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                <span className="feature-pill">
+                  <BarChart3 className="h-3.5 w-3.5" />
+                  15 Questions
+                </span>
+                <span className="feature-pill">
+                  <Zap className="h-3.5 w-3.5" />
+                  Instant
+                </span>
+                <span className="feature-pill">
+                  <Check className="h-3.5 w-3.5" />
+                  Free
+                </span>
               </div>
             </div>
 
-            {/* Card 2: Implementation Guide */}
-            <div
-              onClick={() => navigate('/implementation-guide')}
-              className="p-10 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-normal group flex flex-col h-full border-t md:border-t-0 border-dashed border-white/10"
-            >
-              <div className="flex-1">
-                {/* Category badge */}
-                <div className="badge mb-4">
-                  <Rocket className="h-4 w-4 text-secondary" />
-                  <span>Roadmap</span>
-                </div>
+            {/* Button */}
+            <div className="mt-auto">
+              <button className="btn-primary w-full flex items-center justify-center gap-2">
+                Start Assessment
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
 
-                <h5 className="font-heading text-foreground mb-2">Implementation Guide</h5>
-                <p className="text-sm text-secondary mb-4">Get a Custom AI Roadmap</p>
+          {/* Card 2: Implementation Guide */}
+          <div
+            onClick={() => navigate('/implementation-guide')}
+            className="glass-card text-left cursor-pointer flex flex-col h-full group"
+          >
+            <div className="flex-1">
+              {/* Small label */}
+              <p className="text-sm text-muted-foreground mb-3">Roadmap</p>
 
-                <p className="text-muted-foreground text-sm mb-6">
-                  Already know your challenge? Describe your business process and receive a detailed automation implementation plan.
-                </p>
+              {/* Title */}
+              <h3 className="font-heading text-2xl text-foreground mb-3">
+                Implementation Guide
+              </h3>
 
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    Custom AI analysis
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    Step-by-step roadmap
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
-                    </div>
-                    ROI estimation
-                  </div>
-                </div>
+              {/* Description */}
+              <p className="text-muted-foreground text-sm mb-6">
+                Describe your business process and receive a detailed AI automation implementation plan.
+              </p>
+
+              {/* Feature pills */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                <span className="feature-pill">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  AI Analysis
+                </span>
+                <span className="feature-pill">
+                  <FileText className="h-3.5 w-3.5" />
+                  Roadmap
+                </span>
+                <span className="feature-pill">
+                  <TrendingUp className="h-3.5 w-3.5" />
+                  ROI
+                </span>
               </div>
+            </div>
 
-              {/* Button */}
-              <div className="mt-auto">
-                <button className="btn-secondary w-full flex items-center justify-center gap-2 hover:bg-secondary/15">
-                  Get Your Guide
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </button>
-
-                <p className="text-center text-xs text-muted-foreground mt-3 flex items-center justify-center gap-1">
-                  <Zap className="h-3 w-3" />
-                  Delivered in 10 minutes
-                </p>
-              </div>
+            {/* Button */}
+            <div className="mt-auto">
+              <button className="btn-primary w-full flex items-center justify-center gap-2">
+                Get Your Guide
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Trust elements - badge style */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <div className="badge">
-            <Lock className="h-4 w-4" />
-            No signup required
-          </div>
-          <div className="badge">
-            <Check className="h-4 w-4" />
-            100% Free
-          </div>
-          <div className="badge">
-            <Check className="h-4 w-4" />
-            Actionable insights
-          </div>
+        {/* Trust badges - feature-pill style */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span className="feature-pill text-xs">
+            <Lock className="h-3 w-3" />
+            No signup
+          </span>
+          <span className="feature-pill text-xs">
+            <Check className="h-3 w-3" />
+            Free
+          </span>
+          <span className="feature-pill text-xs">
+            <Zap className="h-3 w-3" />
+            Instant
+          </span>
         </div>
       </div>
     </div>

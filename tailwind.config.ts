@@ -82,6 +82,7 @@ export default {
         sales: "hsl(var(--sales))",
         marketing: "hsl(var(--marketing))",
         ops: "hsl(var(--ops))",
+        cyan: "#00d4ff",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
