@@ -108,8 +108,10 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
       {/* What You're Doing Well - horizontal badges */}
       {doingWell.length > 0 && (
         <div className="glass-card p-6">
-          <h3 className="mb-4 text-lg font-semibold text-foreground flex items-center gap-2">
-            <Check className="h-5 w-5 text-success" />
+          <h3 className="mb-4 text-base font-medium text-foreground tracking-wide flex items-center gap-2">
+            <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
+              <Check className="h-3 w-3 text-success" strokeWidth={3} />
+            </div>
             What You're Already Doing Well
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -118,7 +120,7 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
                 key={index}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-success/10 text-success text-sm font-medium border border-success/20"
               >
-                <Check className="h-3.5 w-3.5" />
+                <Check className="h-3 w-3" strokeWidth={3} />
                 {item}
               </span>
             ))}
@@ -130,11 +132,11 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
       {totalOpportunities > 0 && (
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/20">
-              <MapPin className="h-5 w-5 text-primary" />
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20">
+              <MapPin className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-foreground">Your Improvement Roadmap</h3>
+              <h3 className="text-lg font-semibold text-foreground tracking-wide">Your Improvement Roadmap</h3>
               <p className="text-sm text-muted-foreground">
                 We found {totalOpportunities} opportunities to automate. Here's where to focus for maximum impact:
               </p>

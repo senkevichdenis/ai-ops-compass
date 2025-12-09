@@ -115,7 +115,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
 
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
+          <h1 className="mb-2 text-2xl font-semibold text-foreground md:text-3xl">
             Your Efficiency Score
           </h1>
         </div>
@@ -147,31 +147,37 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
         {/* CTA Section */}
         {!isSharedView ? (
           <div className="glass-card p-6 text-center mb-8">
-            <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/20 p-3">
-              <Sparkles className="h-6 w-6 text-primary" />
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
+              <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
+                <Sparkles className="h-3 w-3 text-primary" />
+              </div>
+              <span className="text-sm font-medium text-muted-foreground">Next Step</span>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-foreground">
+            <h3 className="mb-2 text-xl font-semibold text-foreground">
               Want a Detailed Action Plan?
             </h3>
             <p className="mb-6 text-muted-foreground">
               Get a personalized automation roadmap from our team.
             </p>
-            <button onClick={() => setShowModal(true)} className="btn-primary">
+            <button onClick={() => setShowModal(true)} className="btn-primary px-6 py-3">
               Request Free Consultation
             </button>
           </div>
         ) : (
           <div className="glass-card p-6 text-center mb-8">
-            <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/20 p-3">
-              <Sparkles className="h-6 w-6 text-primary" />
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
+              <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
+                <Sparkles className="h-3 w-3 text-primary" />
+              </div>
+              <span className="text-sm font-medium text-muted-foreground">Get Started</span>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-foreground">
+            <h3 className="mb-2 text-xl font-semibold text-foreground">
               Get Your Own Personalized Results
             </h3>
             <p className="mb-6 text-muted-foreground">
               Take the assessment to discover your specific automation opportunities.
             </p>
-            <button onClick={handleTakeAssessment} className="btn-primary">
+            <button onClick={handleTakeAssessment} className="btn-primary px-6 py-3">
               Take Your Own Assessment
             </button>
           </div>
