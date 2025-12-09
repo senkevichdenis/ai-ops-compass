@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CheckCircle, ArrowRight, Lightbulb, Loader2 } from 'lucide-react';
+import { CheckCircle, ArrowRight, Lightbulb } from 'lucide-react';
 import { sectionInfo } from '@/data/questions';
 
 interface SectionTransitionProps {
@@ -31,7 +31,6 @@ function getInsight(score: number, sectionName: string): { emoji: string; text: 
 }
 
 export function SectionTransition({ completedSection, sectionScore, onContinue }: SectionTransitionProps) {
-  const [isReady, setIsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   const nextSection = completedSection === 'sales' ? 'marketing' : 'ops';
@@ -42,25 +41,15 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
   // Calculate progress bar percentage
   const progressPercent = (sectionScore / 10) * 100;
 
-  // Wait for all data to be ready, then fade in as ONE unit
+  // Fade in immediately on mount as ONE unit - no loader
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsReady(true);
+    // Use requestAnimationFrame to ensure DOM is ready before fading in
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setIsVisible(true);
       });
-    }, 100);
-    return () => clearTimeout(timer);
+    });
   }, []);
-
-  // Loading state
-  if (!isReady) {
-    return (
-      <div className="min-h-[70vh] flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-primary animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <div

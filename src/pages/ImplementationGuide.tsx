@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Rocket, Lock, CheckCircle2, Check } from 'lucide-react';
+import { ArrowLeft, Rocket, Lock, CheckCircle2, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
@@ -33,9 +33,7 @@ export function ImplementationGuide() {
     return () => clearTimeout(timer);
   }, []);
 
-  const charCount = formData.businessProcess.length;
-  const isCharCountValid = charCount >= 100;
-  const charsNeeded = 100 - charCount;
+  const isCharCountValid = formData.businessProcess.length >= 100;
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -61,9 +59,8 @@ export function ImplementationGuide() {
     e.preventDefault();
 
     if (!validateForm()) {
-      // Show specific toast for character count error
-      if (errors.businessProcess === 'too_short' || !isCharCountValid) {
-        toast.error('Please provide at least 100 characters so we can give you detailed recommendations');
+      // For character count error - show inline error, no toast
+      if (!isCharCountValid) {
         setTextareaError(true);
         textareaRef.current?.focus();
       } else {
@@ -256,17 +253,15 @@ export function ImplementationGuide() {
                 )}
                 placeholder="Example: Every day, our sales team spends 2-3 hours manually entering leads from our website forms into HubSpot. They have to copy contact info, company details, and inquiry type, then assign to the right rep based on territory. We also send a welcome email manually. This process is error-prone and slow..."
               />
-              <div className="flex justify-between items-center mt-1">
-                {isCharCountValid ? (
-                  <span className="text-sm text-success flex items-center gap-1">
-                    {charCount} characters <Check className="w-4 h-4" />
-                  </span>
-                ) : (
-                  <span className="text-sm text-muted-foreground">
-                    {charCount} characters — {charsNeeded} more needed for best results
-                  </span>
-                )}
-              </div>
+              {/* Error message - only shown on submit attempt with < 100 chars */}
+              {textareaError && (
+                <div className="flex items-center gap-2 mt-2 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+                  <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+                  <p className="text-sm text-destructive">
+                    Please provide at least 100 characters so we can give you detailed recommendations
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Submit */}
