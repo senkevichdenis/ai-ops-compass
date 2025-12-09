@@ -115,9 +115,9 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
 
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-2xl font-semibold text-foreground md:text-3xl">
+          <h2 className="font-heading mb-2 text-foreground">
             Your Efficiency Score
-          </h1>
+          </h2>
         </div>
 
         {/* Score display */}
@@ -146,38 +146,34 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
 
         {/* CTA Section */}
         {!isSharedView ? (
-          <div className="glass-card p-6 text-center mb-8">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
-              <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
-                <Sparkles className="h-3 w-3 text-primary" />
-              </div>
-              <span className="text-sm font-medium text-muted-foreground">Next Step</span>
+          <div className="glass-card text-center mb-8">
+            <div className="badge mb-4">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>Next Step</span>
             </div>
-            <h3 className="mb-2 text-xl font-semibold text-foreground">
+            <h5 className="font-heading mb-2 text-foreground">
               Want a Detailed Action Plan?
-            </h3>
+            </h5>
             <p className="mb-6 text-muted-foreground">
               Get a personalized automation roadmap from our team.
             </p>
-            <button onClick={() => setShowModal(true)} className="btn-primary px-6 py-3">
+            <button onClick={() => setShowModal(true)} className="btn-primary">
               Request Free Consultation
             </button>
           </div>
         ) : (
-          <div className="glass-card p-6 text-center mb-8">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
-              <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
-                <Sparkles className="h-3 w-3 text-primary" />
-              </div>
-              <span className="text-sm font-medium text-muted-foreground">Get Started</span>
+          <div className="glass-card text-center mb-8">
+            <div className="badge mb-4">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>Get Started</span>
             </div>
-            <h3 className="mb-2 text-xl font-semibold text-foreground">
+            <h5 className="font-heading mb-2 text-foreground">
               Get Your Own Personalized Results
-            </h3>
+            </h5>
             <p className="mb-6 text-muted-foreground">
               Take the assessment to discover your specific automation opportunities.
             </p>
-            <button onClick={handleTakeAssessment} className="btn-primary px-6 py-3">
+            <button onClick={handleTakeAssessment} className="btn-primary">
               Take Your Own Assessment
             </button>
           </div>
@@ -187,14 +183,14 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
         <div className="flex flex-wrap items-center justify-center gap-4">
           <button
             onClick={onRestart}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
+            className="btn-ghost flex items-center gap-2"
           >
             <RefreshCw className="h-4 w-4" />
             Retake Assessment
           </button>
           <button
             onClick={handleShare}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
+            className="btn-ghost flex items-center gap-2"
           >
             {linkCopied ? (
               <>

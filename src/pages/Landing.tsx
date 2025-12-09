@@ -29,7 +29,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
       {/* Floating glow orbs - subtle */}
       <div className="animate-glow-pulse pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-      <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-accent/5 blur-3xl" style={{ animationDelay: '1.5s' }} />
+      <div className="animate-glow-pulse pointer-events-none absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" style={{ animationDelay: '1.5s' }} />
 
       <div
         className={cn(
@@ -38,20 +38,20 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         )}
         style={{ willChange: 'opacity' }}
       >
-        {/* Badge - ultra subtle */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-          <span className="text-sm text-muted-foreground/80">AI Ops Compass</span>
+        {/* Badge - Datalumina style */}
+        <div className="badge mb-6">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span>AI Ops Compass</span>
         </div>
 
-        {/* Main headline */}
-        <h1 className="mb-4 text-3xl font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
+        {/* Main headline - Satoshi font, white italic */}
+        <h1 className="font-heading mb-4 text-foreground">
           Is Your Business Ready for{' '}
-          <em className="italic text-foreground">AI Automation</em>?
+          <em className="italic">AI Automation</em>?
         </h1>
 
         {/* Subheadline */}
-        <p className="mb-10 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto">
+        <p className="mb-10 text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover automation opportunities or get a custom implementation roadmap for your process.
         </p>
 
@@ -60,7 +60,7 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           <div className="mb-8">
             <button
               onClick={onResume}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-success/10 border border-success/20 text-success hover:bg-success/20 transition-colors duration-350"
+              className="badge-success inline-flex items-center gap-2 px-4 py-2 rounded-full border border-success/20 hover:bg-success/20 transition-all duration-normal"
             >
               <Clock className="h-4 w-4" />
               Continue where you left off
@@ -69,60 +69,57 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         )}
 
         {/* Choose Your Path heading */}
-        <h2 className="mb-6 text-lg font-medium text-foreground tracking-wide">
+        <h6 className="font-heading mb-6 text-foreground">
           Choose Your Path
-        </h2>
+        </h6>
 
-        {/* Two-path cards - wrapped in dashed border container */}
+        {/* Two-path cards - dashed border container */}
         <div className="rounded-2xl border border-dashed border-white/10 p-1 mb-10">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Card 1: Quick Assessment */}
             <div
               onClick={onStart}
-              className="p-8 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-350 group flex flex-col h-full md:border-r md:border-dashed md:border-white/10"
+              className="p-10 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-normal group flex flex-col h-full md:border-r md:border-dashed md:border-white/10"
             >
-              {/* Content area - flex-1 to push button to bottom */}
               <div className="flex-1">
-                {/* Pill badge with icon */}
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
-                    <BarChart3 className="h-3 w-3 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium text-muted-foreground">Assessment</span>
+                {/* Category badge */}
+                <div className="badge mb-4">
+                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <span>Assessment</span>
                 </div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-2">Quick Assessment</h3>
-                <p className="text-sm text-primary/80 mb-4">Find Your Automation Opportunities</p>
+                <h5 className="font-heading text-foreground mb-2">Quick Assessment</h5>
+                <p className="text-sm text-primary mb-4">Find Your Automation Opportunities</p>
 
-                <p className="text-muted-foreground text-sm mb-5">
+                <p className="text-muted-foreground text-sm mb-6">
                   Not sure where to start? Take our 3-minute quiz to discover bottlenecks in your Sales, Marketing, and Operations.
                 </p>
 
-                <div className="space-y-2.5 mb-6">
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     15 quick questions
                   </div>
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     Instant results
                   </div>
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     Personalized recommendations
                   </div>
                 </div>
               </div>
 
-              {/* Button area - always at bottom */}
-              <div className="mt-auto pt-2">
-                <button className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-3">
+              {/* Button */}
+              <div className="mt-auto">
+                <button className="btn-primary w-full flex items-center justify-center gap-2">
                   Start Assessment
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
@@ -137,50 +134,47 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
             {/* Card 2: Implementation Guide */}
             <div
               onClick={() => navigate('/implementation-guide')}
-              className="p-8 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-350 group flex flex-col h-full border-t md:border-t-0 border-dashed border-white/10"
+              className="p-10 text-left cursor-pointer hover:bg-white/[0.02] transition-all duration-normal group flex flex-col h-full border-t md:border-t-0 border-dashed border-white/10"
             >
-              {/* Content area - flex-1 to push button to bottom */}
               <div className="flex-1">
-                {/* Pill badge with icon */}
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-card border border-white/10 px-3 py-1.5">
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20">
-                    <Rocket className="h-3 w-3 text-accent" />
-                  </div>
-                  <span className="text-sm font-medium text-muted-foreground">Roadmap</span>
+                {/* Category badge */}
+                <div className="badge mb-4">
+                  <Rocket className="h-4 w-4 text-secondary" />
+                  <span>Roadmap</span>
                 </div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-2">Implementation Guide</h3>
-                <p className="text-sm text-accent/80 mb-4">Get a Custom AI Roadmap</p>
+                <h5 className="font-heading text-foreground mb-2">Implementation Guide</h5>
+                <p className="text-sm text-secondary mb-4">Get a Custom AI Roadmap</p>
 
-                <p className="text-muted-foreground text-sm mb-5">
+                <p className="text-muted-foreground text-sm mb-6">
                   Already know your challenge? Describe your business process and receive a detailed automation implementation plan.
                 </p>
 
-                <div className="space-y-2.5 mb-6">
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     Custom AI analysis
                   </div>
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     Step-by-step roadmap
                   </div>
-                  <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-                      <Check className="h-3 w-3 text-success" strokeWidth={3} />
+                      <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
                     </div>
                     ROI estimation
                   </div>
                 </div>
               </div>
 
-              {/* Button area - always at bottom */}
-              <div className="mt-auto pt-2">
-                <button className="w-full bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-xl transition-all duration-350 flex items-center justify-center gap-2 hover:bg-accent/90">
+              {/* Button */}
+              <div className="mt-auto">
+                <button className="btn-secondary w-full flex items-center justify-center gap-2 hover:bg-secondary/15">
                   Get Your Guide
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
@@ -194,17 +188,17 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
         </div>
 
-        {/* Trust elements - pill style */}
-        <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-card/50 px-4 py-2 text-muted-foreground">
+        {/* Trust elements - badge style */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="badge">
             <Lock className="h-4 w-4" />
             No signup required
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-card/50 px-4 py-2 text-muted-foreground">
+          <div className="badge">
             <Check className="h-4 w-4" />
             100% Free
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-card/50 px-4 py-2 text-muted-foreground">
+          <div className="badge">
             <Check className="h-4 w-4" />
             Actionable insights
           </div>

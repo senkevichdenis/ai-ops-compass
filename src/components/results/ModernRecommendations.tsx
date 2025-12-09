@@ -7,23 +7,23 @@ interface ModernRecommendationsProps {
   totalScore: number;
 }
 
-function RecommendationItem({ 
-  rec, 
+function RecommendationItem({
+  rec,
   index,
-  accentColor 
-}: { 
-  rec: Recommendation; 
+  accentColor
+}: {
+  rec: Recommendation;
   index: number;
   accentColor: string;
 }) {
   return (
-    <div className="py-4 border-b border-border/50 last:border-b-0">
+    <div className="py-4">
       <div className="flex gap-4">
-        <span className={cn("flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold", accentColor)}>
+        <span className={cn("flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold", accentColor)}>
           {index + 1}
         </span>
         <div className="flex-1 min-w-0">
-          <h4 className="font-semibold text-foreground mb-1">{rec.title}</h4>
+          <h6 className="font-heading text-foreground mb-1">{rec.title}</h6>
           <p className="text-sm text-primary mb-2">{rec.shortDescription}</p>
           <p className="text-sm text-muted-foreground leading-relaxed">{rec.description}</p>
         </div>
@@ -32,17 +32,17 @@ function RecommendationItem({
   );
 }
 
-function SectionCard({ 
-  icon: Icon, 
-  title, 
-  count, 
+function SectionCard({
+  icon: Icon,
+  title,
+  count,
   recommendations,
   borderColor,
   iconBg,
   numberBg
-}: { 
+}: {
   icon: React.ElementType;
-  title: string; 
+  title: string;
   count: number;
   recommendations: Recommendation[];
   borderColor: string;
@@ -51,35 +51,35 @@ function SectionCard({
 }) {
   if (count === 0) {
     return (
-      <div className={cn("glass-card p-6 border-l-4", borderColor)}>
+      <div className={cn("glass-card border-l-4", borderColor)}>
         <div className="flex items-center gap-3 mb-4">
-          <div className={cn("p-2 rounded-lg", iconBg)}>
-            <Icon className="h-5 w-5" />
+          <div className={cn("flex items-center justify-center w-8 h-8 rounded-full", iconBg)}>
+            <Icon className="h-4 w-4" />
           </div>
           <div>
-            <span className="font-semibold text-foreground">{title}</span>
+            <span className="font-heading text-foreground">{title}</span>
           </div>
         </div>
-        <div className="flex items-center gap-2 p-3 rounded-lg bg-success/10 border border-success/20">
-          <Check className="h-5 w-5 text-success" />
-          <span className="text-success font-medium">All areas automated!</span>
+        <div className="badge-success flex items-center gap-2 px-4 py-2 rounded-full border border-success/20">
+          <Check className="h-4 w-4" strokeWidth={2.5} />
+          <span className="font-medium">All areas automated!</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={cn("glass-card p-6 border-l-4", borderColor)}>
+    <div className={cn("glass-card border-l-4", borderColor)}>
       <div className="flex items-center gap-3 mb-4">
-        <div className={cn("p-2 rounded-lg", iconBg)}>
-          <Icon className="h-5 w-5" />
+        <div className={cn("flex items-center justify-center w-8 h-8 rounded-full", iconBg)}>
+          <Icon className="h-4 w-4" />
         </div>
         <div>
-          <span className="font-semibold text-foreground">{title}</span>
+          <span className="font-heading text-foreground">{title}</span>
           <span className="ml-2 text-sm text-muted-foreground">({count} opportunities)</span>
         </div>
       </div>
-      <div className="divide-y divide-border/30">
+      <div className="divide-y divide-white/10">
         {recommendations.map((rec, index) => (
           <RecommendationItem
             key={rec.questionId}
@@ -107,20 +107,20 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
 
       {/* What You're Doing Well - horizontal badges */}
       {doingWell.length > 0 && (
-        <div className="glass-card p-6">
-          <h3 className="mb-4 text-base font-medium text-foreground tracking-wide flex items-center gap-2">
+        <div className="glass-card">
+          <h6 className="font-heading mb-4 text-foreground flex items-center gap-2">
             <div className="flex items-center justify-center w-5 h-5 rounded-full bg-success/20">
-              <Check className="h-3 w-3 text-success" strokeWidth={3} />
+              <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
             </div>
             What You're Already Doing Well
-          </h3>
+          </h6>
           <div className="flex flex-wrap gap-2">
             {doingWell.map((item, index) => (
               <span
                 key={index}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-success/10 text-success text-sm font-medium border border-success/20"
+                className="badge-success inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-success/20"
               >
-                <Check className="h-3 w-3" strokeWidth={3} />
+                <Check className="h-3 w-3" strokeWidth={2.5} />
                 {item}
               </span>
             ))}
@@ -136,7 +136,7 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
               <MapPin className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-foreground tracking-wide">Your Improvement Roadmap</h3>
+              <h5 className="font-heading text-foreground">Your Improvement Roadmap</h5>
               <p className="text-sm text-muted-foreground">
                 We found {totalOpportunities} opportunities to automate. Here's where to focus for maximum impact:
               </p>
