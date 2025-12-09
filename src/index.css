@@ -22,7 +22,7 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 230 30% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 20% 72%;
 
     --accent: 263 70% 58%;
     --accent-foreground: 0 0% 100%;
@@ -30,7 +30,7 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 30% 18%;
+    --border: 230 25% 14%;
     --input: 230 30% 15%;
     --ring: 217 91% 60%;
 
@@ -60,11 +60,11 @@
     --gradient-glow: radial-gradient(ellipse at center, hsl(217, 91%, 60%, 0.15) 0%, transparent 70%);
     --gradient-card: linear-gradient(180deg, hsl(230, 40%, 10%) 0%, hsl(230, 40%, 8%) 100%);
 
-    /* Shadows */
-    --shadow-glow-sm: 0 0 20px hsl(217, 91%, 60%, 0.2);
-    --shadow-glow-md: 0 0 40px hsl(217, 91%, 60%, 0.3);
-    --shadow-glow-lg: 0 4px 60px hsl(217, 91%, 60%, 0.4);
-    --shadow-card: 0 4px 24px hsl(0, 0%, 0%, 0.4);
+    /* Shadows - subtle, minimal glow */
+    --shadow-glow-sm: 0 0 12px hsl(217, 91%, 60%, 0.1);
+    --shadow-glow-md: 0 0 20px hsl(217, 91%, 60%, 0.15);
+    --shadow-glow-lg: 0 4px 30px hsl(217, 91%, 60%, 0.2);
+    --shadow-card: 0 4px 20px hsl(0, 0%, 0%, 0.3);
 
     --sidebar-background: 230 40% 8%;
     --sidebar-foreground: 0 0% 100%;
@@ -89,6 +89,8 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
   }
 
   /* Custom scrollbar */
@@ -151,7 +153,7 @@
   }
 
   .btn-primary:hover {
-    @apply scale-[1.02];
+    @apply scale-[1.01];
     box-shadow: var(--shadow-glow-md);
   }
 
@@ -173,7 +175,7 @@
   }
 
   .answer-card:hover {
-    @apply scale-[1.02];
+    @apply scale-[1.01];
     background: hsl(var(--card) / 0.8);
     border-color: hsl(var(--border) / 0.5);
   }
