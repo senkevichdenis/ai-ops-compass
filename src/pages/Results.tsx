@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ScoreDisplay } from '@/components/results/ScoreDisplay';
 import { SectionBreakdown } from '@/components/results/SectionBreakdown';
-import { DeepRecommendations } from '@/components/results/DeepRecommendations';
+import { ModernRecommendations } from '@/components/results/ModernRecommendations';
 import { EmailCaptureCard } from '@/components/results/EmailCaptureCard';
 import { ConsultationModal } from '@/components/results/ConsultationModal';
 import { SharedResultsBanner } from '@/components/results/SharedResultsBanner';
-import { RefreshCw, Share2, Sparkles, Link, Check } from 'lucide-react';
+import { RefreshCw, Share2, Sparkles, Check, Loader2 } from 'lucide-react';
 import { sendConsultationWebhook, sendLeadWebhook } from '@/utils/sendWebhook';
 import { toast } from 'sonner';
 
@@ -28,7 +28,21 @@ interface ResultsProps {
 export function Results({ scores, answers, leadData, onRestart, isSharedView = false }: ResultsProps) {
   const [showModal, setShowModal] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+
+  // Simulate loading to prevent flicker - ensure everything is ready
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      // Small delay before fade in for smooth transition
+      requestAnimationFrame(() => {
+        setIsVisible(true);
+      });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleConsultationSubmit = (data: {
     name: string;
@@ -56,7 +70,6 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
           url: shareUrl
         });
       } catch (error) {
-        // User cancelled or share failed - fall back to clipboard
         copyToClipboard(shareUrl);
       }
     } else {
@@ -76,51 +89,64 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
     onRestart();
   };
 
-  // Check if user skipped lead capture (no lead data)
   const showEmailCapture = !leadData && !isSharedView;
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 text-primary animate-spin" />
+          <p className="text-muted-foreground">Preparing your results...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative min-h-screen bg-gradient-radial px-4 py-12">
-      <div className="mx-auto max-w-4xl">
+    <div 
+      className={`relative min-h-screen bg-gradient-radial px-4 py-12 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+    >
+      <div className="mx-auto max-w-3xl">
         {/* Shared results banner */}
         {isSharedView && (
           <SharedResultsBanner onTakeAssessment={handleTakeAssessment} />
         )}
 
         {/* Header */}
-        <div className="animate-fade-in mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold text-foreground md:text-4xl">
-            Your AI Ops Efficiency Score
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
+            Your Efficiency Score
           </h1>
         </div>
 
         {/* Score display */}
-        <div className="animate-fade-in mb-8" style={{ animationDelay: '100ms' }}>
+        <div className="mb-8">
           <ScoreDisplay total={scores.total} />
         </div>
 
-        {/* Section breakdown */}
-        <div className="animate-fade-in mb-8" style={{ animationDelay: '200ms' }}>
+        {/* Section breakdown - horizontal on desktop */}
+        <div className="mb-10">
           <SectionBreakdown scores={scores} />
         </div>
 
-        {/* Deep Recommendations - only show for non-shared views or if we have answers */}
+        {/* Deep Recommendations - modern design, no accordions */}
         {!isSharedView && answers.some(a => a !== null) && (
-          <div className="animate-fade-in mb-8" style={{ animationDelay: '300ms' }}>
-            <DeepRecommendations answers={answers} totalScore={scores.total} />
+          <div className="mb-10">
+            <ModernRecommendations answers={answers} totalScore={scores.total} />
           </div>
         )}
 
         {/* Email capture for users who skipped */}
         {showEmailCapture && (
-          <div className="animate-fade-in mb-8" style={{ animationDelay: '400ms' }}>
+          <div className="mb-10">
             <EmailCaptureCard onSubmit={handleEmailCapture} />
           </div>
         )}
 
-        {/* CTA Section - hide or modify for shared views */}
+        {/* CTA Section */}
         {!isSharedView ? (
-          <div className="animate-fade-in glass-card p-6 text-center mb-8" style={{ animationDelay: '500ms' }}>
+          <div className="glass-card p-6 text-center mb-8">
             <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/20 p-3">
               <Sparkles className="h-6 w-6 text-primary" />
             </div>
@@ -135,7 +161,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
             </button>
           </div>
         ) : (
-          <div className="animate-fade-in glass-card p-6 text-center mb-8" style={{ animationDelay: '400ms' }}>
+          <div className="glass-card p-6 text-center mb-8">
             <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/20 p-3">
               <Sparkles className="h-6 w-6 text-primary" />
             </div>
@@ -152,7 +178,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
         )}
 
         {/* Footer actions */}
-        <div className="animate-fade-in flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '600ms' }}>
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <button
             onClick={onRestart}
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
