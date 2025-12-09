@@ -23,9 +23,16 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12">
-      {/* Background effects - SIMPLE */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-radial" />
+      {/* Background effects */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" />
+
+      {/* Cyan glow at top */}
+      <div
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px]"
+        style={{
+          background: 'radial-gradient(ellipse at center top, rgba(32, 211, 238, 0.06) 0%, transparent 60%)',
+        }}
+      />
 
       <div
         className={cn(
@@ -34,9 +41,16 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
         )}
         style={{ willChange: 'opacity' }}
       >
-        {/* Badge - top */}
-        <div className="badge mb-6">
-          <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
+        {/* Badge - pill style with orange glow */}
+        <div
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6"
+          style={{
+            background: 'rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(253, 186, 114, 0.3)',
+            boxShadow: '0 0 15px rgba(253, 186, 114, 0.15)',
+            color: 'rgba(255, 255, 255, 0.85)'
+          }}
+        >
           <span>AI Ops Compass</span>
         </div>
 
@@ -46,8 +60,8 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           <span className="text-gradient-cyan">AI Automation</span>?
         </h1>
 
-        {/* Subheadline */}
-        <p className="mb-10 text-lg text-muted-foreground max-w-2xl mx-auto">
+        {/* Subheadline - match card title style */}
+        <p className="mb-10 text-xl font-medium text-foreground/90 max-w-2xl mx-auto">
           Discover automation opportunities or get a custom implementation roadmap for your process.
         </p>
 
@@ -64,8 +78,8 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
         )}
 
-        {/* Choose Your Path - small label */}
-        <p className="text-sm font-medium text-muted-foreground mb-6 tracking-wide">
+        {/* Choose Your Path - whiter */}
+        <p className="text-sm font-medium text-foreground/80 mb-6 tracking-wide uppercase">
           Choose Your Path
         </p>
 
@@ -77,11 +91,11 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
             className="glass-card text-left cursor-pointer flex flex-col h-full"
           >
             <div className="flex-1">
-              {/* Small label */}
-              <p className="text-xs text-muted-foreground mb-2">Assessment</p>
+              {/* Small label - ORANGE */}
+              <p className="text-xs font-medium mb-2" style={{ color: '#fdba72' }}>Assessment</p>
 
-              {/* Title */}
-              <h3 className="font-heading text-xl text-foreground mb-3">
+              {/* Title - white, size +1 */}
+              <h3 className="font-heading text-[21px] font-medium text-foreground mb-3">
                 Quick Assessment
               </h3>
 
@@ -107,9 +121,9 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </div>
             </div>
 
-            {/* Button */}
+            {/* Button - orange hover */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center">
+              <button className="btn-primary-orange w-full flex items-center justify-center">
                 Start Assessment
               </button>
             </div>
@@ -121,11 +135,11 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
             className="glass-card text-left cursor-pointer flex flex-col h-full"
           >
             <div className="flex-1">
-              {/* Small label */}
-              <p className="text-xs text-muted-foreground mb-2">Roadmap</p>
+              {/* Small label - gray */}
+              <p className="text-xs font-medium text-muted-foreground mb-2">Roadmap</p>
 
-              {/* Title */}
-              <h3 className="font-heading text-xl text-foreground mb-3">
+              {/* Title - ORANGE, size +2 */}
+              <h3 className="font-heading text-[22px] font-medium mb-3" style={{ color: '#fdba72' }}>
                 Implementation Guide
               </h3>
 
@@ -151,27 +165,27 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
               </div>
             </div>
 
-            {/* Button */}
+            {/* Button - thinner font, larger size for comparison */}
             <div className="mt-auto">
-              <button className="btn-primary w-full flex items-center justify-center">
+              <button className="btn-primary w-full flex items-center justify-center text-[16px] font-medium">
                 Get Your Guide
               </button>
             </div>
           </div>
         </div>
 
-        {/* Trust badges - tiny, subtle */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
-            <Lock className="h-2.5 w-2.5" />
+        {/* Trust badges - feature-pill style */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+          <span className="feature-pill">
+            <Lock className="h-3 w-3" />
             No signup
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
-            <Check className="h-2.5 w-2.5" />
+          <span className="feature-pill">
+            <Check className="h-3 w-3" />
             Free
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/[0.12] bg-black/30 text-[11px] text-white/80">
-            <Zap className="h-2.5 w-2.5" />
+          <span className="feature-pill">
+            <Zap className="h-3 w-3" />
             Instant
           </span>
         </div>
