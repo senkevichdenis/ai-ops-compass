@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { sectionInfo } from '@/data/questions';
 
 interface SectionTransitionProps {
@@ -10,35 +9,20 @@ interface SectionTransitionProps {
 }
 
 export function SectionTransition({ completedSection, sectionScore, onContinue }: SectionTransitionProps) {
-  const [autoProgress, setAutoProgress] = useState(false);
-  
   const nextSection = completedSection === 'sales' ? 'marketing' : 'ops';
   const completedInfo = sectionInfo[completedSection];
   const nextInfo = sectionInfo[nextSection];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAutoProgress(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (autoProgress) {
-      onContinue();
-    }
-  }, [autoProgress, onContinue]);
-
   return (
-    <div className="animate-scale-in flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
+    <div className="animate-fade-in flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
       {/* Animated checkmark */}
       <div
         className={cn(
-          "mb-6 rounded-full p-4",
+          "mb-6 rounded-full p-4 animate-scale-in",
           completedSection === 'sales' && "bg-sales/20",
           completedSection === 'marketing' && "bg-marketing/20"
         )}
+        style={{ animationDelay: '100ms' }}
       >
         <CheckCircle
           className={cn(
@@ -50,17 +34,26 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       </div>
 
       {/* Completion message */}
-      <h2 className="mb-2 text-2xl font-bold text-foreground">
+      <h2 
+        className="mb-2 text-2xl font-bold text-foreground animate-fade-in"
+        style={{ animationDelay: '200ms' }}
+      >
         {completedInfo.name} — Complete!
       </h2>
 
       {/* Mini score */}
-      <p className="mb-6 text-muted-foreground">
+      <p 
+        className="mb-6 text-muted-foreground animate-fade-in"
+        style={{ animationDelay: '300ms' }}
+      >
         Your score: <span className="font-semibold text-foreground">{sectionScore}/10</span>
       </p>
 
       {/* Next section preview */}
-      <div className="mb-8">
+      <div 
+        className="mb-8 animate-fade-in"
+        style={{ animationDelay: '400ms' }}
+      >
         <p className="text-lg text-foreground">
           Next up: <span className="font-semibold">{nextInfo.name}</span>
         </p>
@@ -73,8 +66,13 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
       </div>
 
       {/* Continue button */}
-      <button onClick={onContinue} className="btn-primary">
-        Continue →
+      <button 
+        onClick={onContinue} 
+        className="btn-primary flex items-center gap-2 animate-fade-in"
+        style={{ animationDelay: '500ms' }}
+      >
+        Continue
+        <ArrowRight className="h-5 w-5" />
       </button>
     </div>
   );

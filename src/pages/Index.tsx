@@ -1,11 +1,17 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuizState } from '@/hooks/useQuizState';
 import { Landing } from './Landing';
 import { Quiz } from './Quiz';
 import { LeadCapture } from './LeadCapture';
 import { Results } from './Results';
 import { sendLeadWebhook } from '@/utils/sendWebhook';
+import { toast } from 'sonner';
 
 const Index = () => {
+  const [searchParams] = useSearchParams();
+  const [isSharedView, setIsSharedView] = useState(false);
+
   const {
     state,
     hasSavedProgress,
@@ -17,14 +23,35 @@ const Index = () => {
     submitLead,
     skipLead,
     restartQuiz,
+    exitToLanding,
     getCurrentSection,
     getScores,
+    setScoresFromParams,
   } = useQuizState();
 
-  const handleSubmitLead = (data: { name: string; email: string }) => {
+  // Handle shared results URL
+  useEffect(() => {
+    const salesParam = searchParams.get('s');
+    const marketingParam = searchParams.get('m');
+    const opsParam = searchParams.get('o');
+
+    if (salesParam && marketingParam && opsParam) {
+      const sales = parseInt(salesParam, 10);
+      const marketing = parseInt(marketingParam, 10);
+      const ops = parseInt(opsParam, 10);
+
+      if (!isNaN(sales) && !isNaN(marketing) && !isNaN(ops)) {
+        setIsSharedView(true);
+        setScoresFromParams(sales, marketing, ops);
+      }
+    }
+  }, [searchParams, setScoresFromParams]);
+
+  const handleSubmitLead = async (data: { name: string; email: string }) => {
     const scores = getScores();
-    sendLeadWebhook(data, scores, state.answers);
+    await sendLeadWebhook(data, scores, state.answers);
     submitLead(data);
+    toast.success("Results sent! Check your inbox within 5 minutes.");
   };
 
   const renderScreen = () => {
@@ -49,6 +76,7 @@ const Index = () => {
             onAnswer={answerQuestion}
             onBack={goToPreviousQuestion}
             onContinueFromTransition={continueFromTransition}
+            onExit={exitToLanding}
           />
         );
 
@@ -67,6 +95,7 @@ const Index = () => {
             answers={state.answers}
             leadData={state.leadData}
             onRestart={restartQuiz}
+            isSharedView={isSharedView}
           />
         );
 
