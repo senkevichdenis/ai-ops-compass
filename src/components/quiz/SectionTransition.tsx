@@ -86,7 +86,7 @@ export function SectionTransition({ completedSection, sectionScore, onContinue }
         </div>
 
         {/* Insight */}
-        <div className="flex items-start gap-3 p-3 rounded-lg bg-secondary/50">
+        <div className="flex items-start gap-3">
           <Lightbulb className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground text-left">
             {insight.text}
