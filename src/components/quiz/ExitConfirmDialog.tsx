@@ -12,8 +12,8 @@ export function ExitConfirmDialog({ isOpen, onConfirm, onCancel }: ExitConfirmDi
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+      <div
+        className="absolute inset-0 bg-background/95 backdrop-blur-md"
         onClick={onCancel}
       />
 
@@ -36,13 +36,13 @@ export function ExitConfirmDialog({ isOpen, onConfirm, onCancel }: ExitConfirmDi
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <button
             onClick={onCancel}
-            className="px-6 py-2.5 rounded-xl border border-border text-foreground hover:bg-secondary transition-all duration-300"
+            className="btn-primary"
           >
             Continue Quiz
           </button>
           <button
             onClick={onConfirm}
-            className="px-6 py-2.5 rounded-xl bg-muted text-muted-foreground hover:bg-muted/80 transition-all duration-300"
+            className="btn-ghost"
           >
             Exit
           </button>
