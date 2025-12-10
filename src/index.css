@@ -292,6 +292,26 @@
     color: rgba(255, 255, 255, 0.95);
   }
 
+  /* Кнопка с белым hover (для оранжевых карточек) */
+  .btn-primary-white-hover {
+    font-family: 'Inter', sans-serif;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 1000px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 450ms ease;
+  }
+
+  .btn-primary-white-hover:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+  }
+
   /* === INPUTS === */
   .input-field {
     @apply w-full text-foreground;
@@ -425,7 +445,7 @@
 
   /* === CYAN GRADIENT TEXT (ElevenLabs style) === */
   .text-gradient-cyan {
-    background: linear-gradient(180deg, #e0f7ff 0%, #20d3ee 50%, #0891b2 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #7dd8f0 30%, #20d3ee 60%, #0891b2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -112,9 +112,16 @@ export function ModernRecommendations({ answers, totalScore }: ModernRecommendat
             {doingWell.map((item, index) => (
               <span
                 key={index}
-                className="badge-success inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-success/20"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-normal"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  background: 'rgba(34, 197, 94, 0.15)',
+                  border: '1px solid rgba(34, 197, 94, 0.25)',
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  letterSpacing: '0.01em'
+                }}
               >
-                <Check className="h-3 w-3" strokeWidth={2.5} />
+                <Check className="h-3 w-3" strokeWidth={2.5} style={{ color: 'rgba(34, 197, 94, 0.9)' }} />
                 {item}
               </span>
             ))}

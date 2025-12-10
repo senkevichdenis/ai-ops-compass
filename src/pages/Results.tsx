@@ -140,7 +140,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
             <p className="mb-6 text-muted-foreground">
               Get a personalized automation roadmap from our team.
             </p>
-            <button onClick={() => setShowModal(true)} className="btn-primary">
+            <button onClick={() => setShowModal(true)} className="btn-primary-white-hover">
               Request Free Consultation
             </button>
           </div>
@@ -156,7 +156,7 @@ export function Results({ scores, answers, leadData, onRestart, isSharedView = f
             <p className="mb-6 text-muted-foreground">
               Take the assessment to discover your specific automation opportunities.
             </p>
-            <button onClick={handleTakeAssessment} className="btn-primary">
+            <button onClick={handleTakeAssessment} className="btn-primary-white-hover">
               Take Your Own Assessment
             </button>
           </div>

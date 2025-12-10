@@ -46,8 +46,8 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-normal mb-6"
           style={{
             background: 'rgba(0, 0, 0, 0.3)',
-            border: '1px solid rgba(253, 186, 114, 0.3)',
-            boxShadow: '0 0 15px rgba(253, 186, 114, 0.15)',
+            border: '1px solid rgba(253, 186, 114, 0.8)',
+            boxShadow: '0 0 25px rgba(253, 186, 114, 0.25)',
             color: 'rgba(255, 255, 255, 0.85)'
           }}
         >
@@ -174,17 +174,38 @@ export function Landing({ onStart, onResume, hasSavedProgress }: LandingProps) {
           </div>
         </div>
 
-        {/* Trust badges - feature-pill style */}
+        {/* Trust badges - soft green pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-          <span className="feature-pill">
+          <span
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-normal"
+            style={{
+              background: 'rgba(34, 197, 94, 0.1)',
+              border: '1px solid rgba(34, 197, 94, 0.25)',
+              color: 'rgba(34, 197, 94, 0.9)'
+            }}
+          >
             <Lock className="h-3 w-3" />
             No signup
           </span>
-          <span className="feature-pill">
+          <span
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-normal"
+            style={{
+              background: 'rgba(34, 197, 94, 0.1)',
+              border: '1px solid rgba(34, 197, 94, 0.25)',
+              color: 'rgba(34, 197, 94, 0.9)'
+            }}
+          >
             <Check className="h-3 w-3" />
             Free
           </span>
-          <span className="feature-pill">
+          <span
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-normal"
+            style={{
+              background: 'rgba(34, 197, 94, 0.1)',
+              border: '1px solid rgba(34, 197, 94, 0.25)',
+              color: 'rgba(34, 197, 94, 0.9)'
+            }}
+          >
             <Zap className="h-3 w-3" />
             Instant
           </span>
